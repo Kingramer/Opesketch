@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var editPopup = false
+    @State var operationPopup = false
+    @State var canvasPopup = false
     var body: some View {
         HStack {
             VStack {
@@ -44,24 +47,33 @@ struct ContentView: View {
                 Rectangle()
                     .foregroundColor(.white)
                 VStack {
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    Button(action: { self.editPopup.toggle() }) {
                         Image(systemName: "pencil")
                             .font(.system(size: 40))
                     }
                     .padding()
                     .foregroundColor(.gray)
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    if editPopup {
+                        editPopupView(isPresent: $editPopup)
+                    }
+                    Button(action: { self.operationPopup.toggle() }) {
                         Image(systemName: "scissors")
                             .font(.system(size: 40))
                     }
                     .padding()
                     .foregroundColor(.gray)
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    if operationPopup {
+                        operationPopupView(isPresent: $operationPopup)
+                    }
+                    Button(action: { self.canvasPopup.toggle() }) {
                         Image(systemName: "paintbrush")
                             .font(.system(size: 40))
                     }
                     .padding()
                     .foregroundColor(.gray)
+                    if canvasPopup {
+                        canvasPopupView(isPresent: $canvasPopup)
+                    }
                 }
             }
                 
