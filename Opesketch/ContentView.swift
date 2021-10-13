@@ -12,6 +12,9 @@ struct ContentView: View {
     @State var operationPopup = false
     @State var canvasPopup = false
     var body: some View {
+        let bounds = UIScreen.main.bounds
+        let width = Int(bounds.width)
+        let height = Int(bounds.height)
         HStack {
             VStack {
                 Rectangle()
@@ -44,40 +47,56 @@ struct ContentView: View {
             }
             Divider()
             HStack {
-                Rectangle()
-                    .foregroundColor(.white)
                 VStack {
-                    Button(action: { self.editPopup.toggle() }) {
+                    Rectangle()
+                        .foregroundColor(.white)
+                    Divider()
+                    VStack {
+                        if editPopup {
+                            editPopupView(isPresent: $editPopup)
+                        }
+                        if operationPopup {
+                            operationPopupView(isPresent: $operationPopup)
+                        }
+                        if canvasPopup {
+                            canvasPopupView(isPresent: $canvasPopup)
+                        }
+                    }
+                }
+                VStack {
+                    Button(action: {
+                        self.editPopup.toggle()
+                        self.operationPopup = false
+                        self.canvasPopup = false
+                    }) {
                         Image(systemName: "pencil")
                             .font(.system(size: 40))
                     }
                     .padding()
                     .foregroundColor(.gray)
-                    if editPopup {
-                        editPopupView(isPresent: $editPopup)
-                    }
-                    Button(action: { self.operationPopup.toggle() }) {
+                    Button(action: {
+                        self.operationPopup.toggle()
+                        self.editPopup = false
+                        self.canvasPopup = false
+                    }) {
                         Image(systemName: "scissors")
                             .font(.system(size: 40))
                     }
                     .padding()
                     .foregroundColor(.gray)
-                    if operationPopup {
-                        operationPopupView(isPresent: $operationPopup)
-                    }
-                    Button(action: { self.canvasPopup.toggle() }) {
+                    Button(action: {
+                        self.canvasPopup.toggle()
+                        self.editPopup = false
+                        self.operationPopup = false
+                    }) {
                         Image(systemName: "paintbrush")
                             .font(.system(size: 40))
                     }
                     .padding()
                     .foregroundColor(.gray)
-                    if canvasPopup {
-                        canvasPopupView(isPresent: $canvasPopup)
-                    }
                 }
             }
-                
-            
+            .frame(width: 512.0, height: /*@START_MENU_TOKEN@*/725.0/*@END_MENU_TOKEN@*/)
         }
     }
 }
