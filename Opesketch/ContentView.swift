@@ -15,7 +15,7 @@ struct ContentView: View {
     var body: some View {
         let bounds = UIScreen.main.bounds
         let deviceWidth = Float(bounds.width)
-        let deviceHeight = Float(bounds.height)
+        // let deviceHeight = Float(bounds.height)
         // let statusbarHeight = Float(UIApplication.shared.statusBarFrame.height)
         // let safeHeight = deviceHeight - statusbarHeight
         HStack {
@@ -31,7 +31,7 @@ struct ContentView: View {
                     
                 }
                 Divider()
-                HStack {
+                HStack(alignment: .center) {
                     Group {
                         Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                             Image(systemName: "play.circle")
@@ -56,8 +56,9 @@ struct ContentView: View {
                         .foregroundColor(.black)
                     }
                 }
+                .padding(/*@START_MENU_TOKEN@*/.bottom, 10.0/*@END_MENU_TOKEN@*/)
             }
-            .frame(width: CGFloat(deviceWidth * 0.5))
+            .frame(width: CGFloat(deviceWidth * 0.5 - 10))
             Divider()
             HStack {
                 VStack {
@@ -76,7 +77,7 @@ struct ContentView: View {
                                 canvasPopupView(isPresent: $canvasPopup, canvasColor: $canvasColor)
                             }
                         }
-                        .frame(height: CGFloat(deviceHeight * 0.4))
+                        .frame(height: 150 /*CGFloat(deviceHeight * 0.4)*/)
                     }
                 }
                 VStack {
@@ -112,7 +113,7 @@ struct ContentView: View {
                     .foregroundColor(.gray)
                 }
             }
-            .frame(width: CGFloat(deviceWidth * 0.5))
+            .frame(width: CGFloat(deviceWidth * 0.5 - 10))
         }
         //.edgesIgnoringSafeArea(.all)
     }
@@ -120,6 +121,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(canvasColor: .white)
+        ContentView(canvasColor: .cyan)
     }
 }
