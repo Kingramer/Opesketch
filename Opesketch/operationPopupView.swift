@@ -16,56 +16,56 @@ struct operationPopupView: View {
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                         VStack {
                             Image(systemName: "arrow.right")
-                                .font(.system(size: 40))
+                                .font(.system(size: 50))
                             Text("right")
                         }
                     }
                 }
-                .padding()
+                .padding(/*@START_MENU_TOKEN@*/.all, 7.0/*@END_MENU_TOKEN@*/)
                 .foregroundColor(.brown)
                 VStack {
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                         VStack {
                             Image(systemName: "arrow.left")
-                                .font(.system(size: 40))
+                                .font(.system(size: 50))
                             Text("left")
                         }
                     }
                 }
-                .padding()
+                .padding(/*@START_MENU_TOKEN@*/.all, 7.0/*@END_MENU_TOKEN@*/)
                 .foregroundColor(.brown)
                 VStack {
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                         VStack {
                             Image(systemName: "arrow.up")
-                                .font(.system(size: 40))
+                                .font(.system(size: 50))
                             Text("up")
                         }
                     }
                 }
-                .padding()
+                .padding(/*@START_MENU_TOKEN@*/.all, 7.0/*@END_MENU_TOKEN@*/)
                 .foregroundColor(.brown)
                 VStack {
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                         VStack {
                             Image(systemName: "arrow.down")
-                                .font(.system(size: 40))
+                                .font(.system(size: 50))
                             Text("down")
                         }
                     }
                 }
-                .padding()
+                .padding(/*@START_MENU_TOKEN@*/.all, 7.0/*@END_MENU_TOKEN@*/)
                 .foregroundColor(.brown)
                 VStack {
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                         VStack {
                             Image(systemName: "arrow.clockwise")
-                                .font(.system(size: 40))
-                            Text("rotation1")
+                                .font(.system(size: 50))
+                            Text("rotate1")
                         }
                     }
                 }
-                .padding()
+                .padding(/*@START_MENU_TOKEN@*/.all, 7.0/*@END_MENU_TOKEN@*/)
                 .foregroundColor(.brown)
             }
             HStack {
@@ -73,56 +73,56 @@ struct operationPopupView: View {
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                         VStack {
                             Image(systemName: "arrow.turn.up.right")
-                                .font(.system(size: 40))
-                            Text("turn right")
+                                .font(.system(size: 50))
+                            Text("turn R")
                         }
                     }
                 }
-                .padding()
+                .padding(/*@START_MENU_TOKEN@*/.all, 7.0/*@END_MENU_TOKEN@*/)
                 .foregroundColor(.brown)
                 VStack {
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                         VStack {
                             Image(systemName: "arrow.turn.up.left")
-                                .font(.system(size: 40))
-                            Text("turn left")
+                                .font(.system(size: 50))
+                            Text("turn L")
                         }
                     }
                 }
-                .padding()
+                .padding(/*@START_MENU_TOKEN@*/.all, 7.0/*@END_MENU_TOKEN@*/)
                 .foregroundColor(.brown)
                 VStack {
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                         VStack {
                             Image(systemName: "arrow.up.left.and.arrow.down.right")
-                                .font(.system(size: 40))
-                            Text("size up")
+                                .font(.system(size: 50))
+                            Text("big")
                         }
                     }
                 }
-                .padding()
+                .padding(/*@START_MENU_TOKEN@*/.all, 7.0/*@END_MENU_TOKEN@*/)
                 .foregroundColor(.brown)
                 VStack {
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                         VStack {
                             Image(systemName: "arrow.down.right.and.arrow.up.left")
-                                .font(.system(size: 40))
-                            Text("size down")
+                                .font(.system(size: 50))
+                            Text("small")
                         }
                     }
                 }
-                .padding()
+                .padding(/*@START_MENU_TOKEN@*/.all, 7.0/*@END_MENU_TOKEN@*/)
                 .foregroundColor(.brown)
                 VStack {
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                         VStack {
                             Image(systemName: "arrow.counterclockwise")
-                                .font(.system(size: 40))
-                            Text("rotation2")
+                                .font(.system(size: 50))
+                            Text("rotate2")
                         }
                     }
                 }
-                .padding()
+                .padding(/*@START_MENU_TOKEN@*/.all, 7.0/*@END_MENU_TOKEN@*/)
                 .foregroundColor(.brown)
             }
         }

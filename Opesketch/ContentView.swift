@@ -11,14 +11,26 @@ struct ContentView: View {
     @State var editPopup = false
     @State var operationPopup = false
     @State var canvasPopup = false
+    @State var canvasColor:Color
     var body: some View {
         let bounds = UIScreen.main.bounds
-        let width = Int(bounds.width)
-        let height = Int(bounds.height)
+        let deviceWidth = Float(bounds.width)
+        let deviceHeight = Float(bounds.height)
+        // let statusbarHeight = Float(UIApplication.shared.statusBarFrame.height)
+        // let safeHeight = deviceHeight - statusbarHeight
         HStack {
             VStack {
-                Rectangle()
-                    .foregroundColor(.white)
+                ZStack(alignment: .center) {
+                    //RoundedRectangle(cornerRadius: 20)
+                        //.stroke(canvasColor, lineWidth: 3)
+                        //.foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                        //.padding()
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundColor(canvasColor)
+                        .padding()
+                    
+                }
+                Divider()
                 HStack {
                     Group {
                         Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
@@ -45,22 +57,26 @@ struct ContentView: View {
                     }
                 }
             }
+            .frame(width: CGFloat(deviceWidth * 0.5))
             Divider()
             HStack {
                 VStack {
                     Rectangle()
                         .foregroundColor(.white)
-                    Divider()
-                    VStack {
-                        if editPopup {
-                            editPopupView(isPresent: $editPopup)
+                    if editPopup || operationPopup || canvasPopup {
+                        Divider()
+                        VStack {
+                            if editPopup {
+                                editPopupView(isPresent: $editPopup)
+                            }
+                            if operationPopup {
+                                operationPopupView(isPresent: $operationPopup)
+                            }
+                            if canvasPopup {
+                                canvasPopupView(isPresent: $canvasPopup, canvasColor: $canvasColor)
+                            }
                         }
-                        if operationPopup {
-                            operationPopupView(isPresent: $operationPopup)
-                        }
-                        if canvasPopup {
-                            canvasPopupView(isPresent: $canvasPopup)
-                        }
+                        .frame(height: CGFloat(deviceHeight * 0.4))
                     }
                 }
                 VStack {
@@ -70,7 +86,7 @@ struct ContentView: View {
                         self.canvasPopup = false
                     }) {
                         Image(systemName: "pencil")
-                            .font(.system(size: 40))
+                            .font(.system(size: 50))
                     }
                     .padding()
                     .foregroundColor(.gray)
@@ -96,13 +112,14 @@ struct ContentView: View {
                     .foregroundColor(.gray)
                 }
             }
-            .frame(width: 512.0, height: /*@START_MENU_TOKEN@*/725.0/*@END_MENU_TOKEN@*/)
+            .frame(width: CGFloat(deviceWidth * 0.5))
         }
+        //.edgesIgnoringSafeArea(.all)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(canvasColor: .white)
     }
 }

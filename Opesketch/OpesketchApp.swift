@@ -11,7 +11,7 @@ import SwiftUI
 struct OpesketchApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(canvasColor: .white)
         }
     }
 }
