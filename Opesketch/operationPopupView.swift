@@ -21,6 +21,7 @@ struct operationPopupView: View {
                             Text("right")
                                 .font(.title2)
                                 .fontWeight(.medium)
+                                .frame(height: 20.0)
                         }
                     }
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
@@ -31,6 +32,7 @@ struct operationPopupView: View {
                             Text("left")
                                 .font(.title2)
                                 .fontWeight(.medium)
+                                .frame(height: 20.0)
                         }
                     }
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
@@ -41,6 +43,7 @@ struct operationPopupView: View {
                             Text("up")
                                 .font(.title2)
                                 .fontWeight(.medium)
+                                .frame(height: 20.0)
                         }
                     }
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
@@ -51,6 +54,7 @@ struct operationPopupView: View {
                             Text("down")
                                 .font(.title2)
                                 .fontWeight(.medium)
+                                .frame(height: 20.0)
                         }
                     }
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
@@ -61,6 +65,7 @@ struct operationPopupView: View {
                             Text("turn R")
                                 .font(.title2)
                                 .fontWeight(.medium)
+                                .frame(height: 20.0)
                         }
                     }
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
@@ -71,6 +76,7 @@ struct operationPopupView: View {
                             Text("turn L")
                                 .font(.title2)
                                 .fontWeight(.medium)
+                                .frame(height: 20.0)
                         }
                     }
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
@@ -81,6 +87,7 @@ struct operationPopupView: View {
                             Text("rotate1")
                                 .font(.title2)
                                 .fontWeight(.medium)
+                                .frame(height: 20.0)
                         }
                     }
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
@@ -91,6 +98,7 @@ struct operationPopupView: View {
                             Text("rotate2")
                                 .font(.title2)
                                 .fontWeight(.medium)
+                                .frame(height: 20.0)
                         }
                     }
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
@@ -101,6 +109,7 @@ struct operationPopupView: View {
                             Text("big")
                                 .font(.title2)
                                 .fontWeight(.medium)
+                                .frame(height: 20.0)
                         }
                     }
                     Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
@@ -111,6 +120,7 @@ struct operationPopupView: View {
                             Text("small")
                                 .font(.title2)
                                 .fontWeight(.medium)
+                                .frame(height: 20.0)
                         }
                     }
                 }
