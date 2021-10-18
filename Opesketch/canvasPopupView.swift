@@ -92,6 +92,6 @@ enum ColorValue {
 
 struct canvasPopupView_Previews: PreviewProvider {
     static var previews: some View {
-        canvasPopupView(isPresent: .constant(false), canvasColor: .constant(.cyan))
+        canvasPopupView(isPresent: .constant(false), canvasColor: .constant(.white))
     }
 }

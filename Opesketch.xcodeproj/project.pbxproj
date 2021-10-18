@@ -14,7 +14,7 @@
 		AA9C080F2715D44900F2C4B0 /* editPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C080E2715D44900F2C4B0 /* editPopupView.swift */; };
 		AA9C08112715D47600F2C4B0 /* operationPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C08102715D47600F2C4B0 /* operationPopupView.swift */; };
 		AA9C08132715D48C00F2C4B0 /* canvasPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C08122715D48C00F2C4B0 /* canvasPopupView.swift */; };
-		AA9C08172716704000F2C4B0 /* setupButtonWrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C08162716704000F2C4B0 /* setupButtonWrap.swift */; };
+		AAB8193A271CF65C0042BC91 /* operationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB81939271CF65C0042BC91 /* operationList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +26,7 @@
 		AA9C080E2715D44900F2C4B0 /* editPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editPopupView.swift; sourceTree = "<group>"; };
 		AA9C08102715D47600F2C4B0 /* operationPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = operationPopupView.swift; sourceTree = "<group>"; };
 		AA9C08122715D48C00F2C4B0 /* canvasPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = canvasPopupView.swift; sourceTree = "<group>"; };
-		AA9C08162716704000F2C4B0 /* setupButtonWrap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setupButtonWrap.swift; sourceTree = "<group>"; };
+		AAB81939271CF65C0042BC91 /* operationList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = operationList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +61,9 @@
 			children = (
 				AA9C080027141F6000F2C4B0 /* OpesketchApp.swift */,
 				AA9C080227141F6000F2C4B0 /* ContentView.swift */,
+				AAB81939271CF65C0042BC91 /* operationList.swift */,
 				AA9C080E2715D44900F2C4B0 /* editPopupView.swift */,
 				AA9C08102715D47600F2C4B0 /* operationPopupView.swift */,
-				AA9C08162716704000F2C4B0 /* setupButtonWrap.swift */,
 				AA9C08122715D48C00F2C4B0 /* canvasPopupView.swift */,
 				AA9C080427141F6400F2C4B0 /* Assets.xcassets */,
 				AA9C080627141F6400F2C4B0 /* Preview Content */,
@@ -150,9 +150,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA9C080327141F6000F2C4B0 /* ContentView.swift in Sources */,
+				AAB8193A271CF65C0042BC91 /* operationList.swift in Sources */,
 				AA9C080127141F6000F2C4B0 /* OpesketchApp.swift in Sources */,
 				AA9C080F2715D44900F2C4B0 /* editPopupView.swift in Sources */,
-				AA9C08172716704000F2C4B0 /* setupButtonWrap.swift in Sources */,
 				AA9C08112715D47600F2C4B0 /* operationPopupView.swift in Sources */,
 				AA9C08132715D48C00F2C4B0 /* canvasPopupView.swift in Sources */,
 			);

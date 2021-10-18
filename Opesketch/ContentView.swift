@@ -15,7 +15,7 @@ struct ContentView: View {
     var body: some View {
         let bounds = UIScreen.main.bounds
         let deviceWidth = Float(bounds.width)
-        // let deviceHeight = Float(bounds.height)
+        let deviceHeight = Float(bounds.height)
         // let statusbarHeight = Float(UIApplication.shared.statusBarFrame.height)
         // let safeHeight = deviceHeight - statusbarHeight
         ZStack {
@@ -63,56 +63,60 @@ struct ContentView: View {
                 }
                 .frame(width: CGFloat(deviceWidth * 0.5 - 10))
                 Divider()
-                HStack {
-                    VStack {
-                        Rectangle()
-                            .foregroundColor(.white)
-                        if editPopup || operationPopup || canvasPopup {
-                            Divider()
-                            VStack {
-                                if editPopup {
-                                    editPopupView(isPresent: $editPopup)
+                VStack {
+                    HStack {
+                        VStack {
+                            
+                        }
+                        .frame(height: CGFloat(deviceHeight - 180))
+                        VStack {
+                            Group {
+                                Button(action: {
+                                    self.editPopup.toggle()
+                                    self.operationPopup = false
+                                    self.canvasPopup = false
+                                }) {
+                                    Image(systemName: "pencil")
+                                        .font(.system(size: 40))
                                 }
-                                if operationPopup {
-                                    operationPopupView(isPresent: $operationPopup)
+                                Button(action: {
+                                    self.operationPopup.toggle()
+                                    self.editPopup = false
+                                    self.canvasPopup = false
+                                }) {
+                                    Image(systemName: "scissors")
+                                        .font(.system(size: 40))
                                 }
-                                if canvasPopup {
-                                    canvasPopupView(isPresent: $canvasPopup, canvasColor: $canvasColor)
+                                Button(action: {
+                                    self.canvasPopup.toggle()
+                                    self.editPopup = false
+                                    self.operationPopup = false
+                                }) {
+                                    Image(systemName: "paintbrush")
+                                        .font(.system(size: 40))
                                 }
                             }
-                            .frame(height: 150 /*CGFloat(deviceHeight * 0.4)*/)
+                            .padding()
+                            .frame(width: 80.0, height: 80.0)
+                            .foregroundColor(.gray)
                         }
                     }
-                    VStack {
-                        Group {
-                            Button(action: {
-                                self.editPopup.toggle()
-                                self.operationPopup = false
-                                self.canvasPopup = false
-                            }) {
-                                Image(systemName: "pencil")
-                                    .font(.system(size: 40))
+                    .position(x: CGFloat(deviceWidth * 0.25), y: CGFloat(deviceHeight * 0.5 - 85))
+                    //.frame(width: CGFloat(deviceWidth * 0.5 - 100))
+                    if editPopup || operationPopup || canvasPopup {
+                        Divider()
+                        VStack {
+                            if editPopup {
+                                editPopupView(isPresent: $editPopup)
                             }
-                            Button(action: {
-                                self.operationPopup.toggle()
-                                self.editPopup = false
-                                self.canvasPopup = false
-                            }) {
-                                Image(systemName: "scissors")
-                                    .font(.system(size: 40))
+                            if operationPopup {
+                                operationPopupView(isPresent: $operationPopup)
                             }
-                            Button(action: {
-                                self.canvasPopup.toggle()
-                                self.editPopup = false
-                                self.operationPopup = false
-                            }) {
-                                Image(systemName: "paintbrush")
-                                    .font(.system(size: 40))
+                            if canvasPopup {
+                                canvasPopupView(isPresent: $canvasPopup, canvasColor: $canvasColor)
                             }
                         }
-                        .padding()
-                        .frame(width: 80.0, height: 80.0)
-                        .foregroundColor(.gray)
+                        .frame(width: CGFloat(deviceWidth * 0.5 - 10), height: 150)
                     }
                 }
                 .frame(width: CGFloat(deviceWidth * 0.5 - 10))
@@ -124,6 +128,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(canvasColor: .cyan)
+        ContentView(canvasColor: .white)
     }
 }
