@@ -65,8 +65,10 @@ struct ContentView: View {
                 Divider()
                 VStack {
                     HStack {
-                        VStack {
-                            
+                        ZStack {
+                            Rectangle()
+                                .foregroundColor(Color(red: 0.96875, green: 0.953125, blue: 0.8984375))
+                            operationList()
                         }
                         .frame(height: CGFloat(deviceHeight - 180))
                         VStack {
