@@ -21,6 +21,12 @@ struct operationList: View {
                             ZStack(alignment: .center) {
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(.brown, lineWidth: 3)
+                                    .frame(width: 65, height: 65)
+                                Text("\(index+1)")
+                                    .fontWeight(.bold)
+                                    .frame(width: 65, height: 100, alignment: .top)
+                                    .foregroundColor(.brown)
+                                    .font(.caption)
                                 opeList[index].image()
                             }
                             .frame(width: 65, height: 65)
@@ -29,6 +35,11 @@ struct operationList: View {
                             ZStack(alignment: .center) {
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(.brown.opacity(0.5), style: StrokeStyle(lineWidth: 3, dash: [8]))
+                                    .frame(width: 65, height: 65)
+                                Text("\(index+1)")
+                                    .frame(width: 65, height: 100, alignment: .top)
+                                    .foregroundColor(.brown)
+                                    .font(.caption)
                                 opeList[index].image()
                             }
                             .frame(width: 65, height: 65)
@@ -53,6 +64,8 @@ enum OpeImageValue {
     case rotatel
     case big
     case small
+    case delete
+    case alldele
     func image() -> some View {
         switch( self ){
             case .plus:
@@ -107,6 +120,16 @@ enum OpeImageValue {
                 .font(.system(size: 50))
             case .small:
                 return Image(systemName: "arrow.down.right.and.arrow.up.left")
+                .frame(width: 60.0, height: 60.0)
+                .foregroundColor(.brown)
+                .font(.system(size: 50))
+            case .delete:
+                return Image(systemName: "minus")
+                .frame(width: 60.0, height: 60.0)
+                .foregroundColor(.brown)
+                .font(.system(size: 50))
+            case .alldele:
+                return Image(systemName: "rays")
                 .frame(width: 60.0, height: 60.0)
                 .foregroundColor(.brown)
                 .font(.system(size: 50))

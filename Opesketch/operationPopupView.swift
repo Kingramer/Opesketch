@@ -16,8 +16,10 @@ struct operationPopupView: View {
             HStack {
                 Group {
                     Button(action: {
-                        opeList[opeLen] = .right
-                        opeLen += 1
+                        if opeLen < 24 {
+                            opeList[opeLen] = .right
+                            opeLen += 1
+                        }
                     }) {
                         VStack {
                             Image(systemName: "arrow.right")
@@ -30,8 +32,10 @@ struct operationPopupView: View {
                         }
                     }
                     Button(action: {
-                        opeList[opeLen] = .left
-                        opeLen += 1
+                        if opeLen < 24 {
+                            opeList[opeLen] = .left
+                            opeLen += 1
+                        }
                     }) {
                         VStack {
                             Image(systemName: "arrow.left")
@@ -44,8 +48,10 @@ struct operationPopupView: View {
                         }
                     }
                     Button(action: {
-                        opeList[opeLen] = .up
-                        opeLen += 1
+                        if opeLen < 24 {
+                            opeList[opeLen] = .up
+                            opeLen += 1
+                        }
                     }) {
                         VStack {
                             Image(systemName: "arrow.up")
@@ -58,8 +64,10 @@ struct operationPopupView: View {
                         }
                     }
                     Button(action: {
-                        opeList[opeLen] = .down
-                        opeLen += 1
+                        if opeLen < 24 {
+                            opeList[opeLen] = .down
+                            opeLen += 1
+                        }
                     }) {
                         VStack {
                             Image(systemName: "arrow.down")
@@ -72,8 +80,10 @@ struct operationPopupView: View {
                         }
                     }
                     Button(action: {
-                        opeList[opeLen] = .turnr
-                        opeLen += 1
+                        if opeLen < 24 {
+                            opeList[opeLen] = .turnr
+                            opeLen += 1
+                        }
                     }) {
                         VStack {
                             Image(systemName: "arrow.turn.up.right")
@@ -86,8 +96,10 @@ struct operationPopupView: View {
                         }
                     }
                     Button(action: {
-                        opeList[opeLen] = .turnl
-                        opeLen += 1
+                        if opeLen < 24 {
+                            opeList[opeLen] = .turnl
+                            opeLen += 1
+                        }
                     }) {
                         VStack {
                             Image(systemName: "arrow.turn.up.left")
@@ -100,8 +112,10 @@ struct operationPopupView: View {
                         }
                     }
                     Button(action: {
-                        opeList[opeLen] = .rotater
-                        opeLen += 1
+                        if opeLen < 24 {
+                            opeList[opeLen] = .rotater
+                            opeLen += 1
+                        }
                     }) {
                         VStack {
                             Image(systemName: "arrow.clockwise")
@@ -114,8 +128,10 @@ struct operationPopupView: View {
                         }
                     }
                     Button(action: {
-                        opeList[opeLen] = .rotatel
-                        opeLen += 1
+                        if opeLen < 24 {
+                            opeList[opeLen] = .rotatel
+                            opeLen += 1
+                        }
                     }) {
                         VStack {
                             Image(systemName: "arrow.counterclockwise")
@@ -128,8 +144,10 @@ struct operationPopupView: View {
                         }
                     }
                     Button(action: {
-                        opeList[opeLen] = .big
-                        opeLen += 1
+                        if opeLen < 24 {
+                            opeList[opeLen] = .big
+                            opeLen += 1
+                        }
                     }) {
                         VStack {
                             Image(systemName: "arrow.up.left.and.arrow.down.right")
@@ -142,14 +160,51 @@ struct operationPopupView: View {
                         }
                     }
                     Button(action: {
-                        opeList[opeLen] = .small
-                        opeLen += 1
+                        if opeLen < 24 {
+                            opeList[opeLen] = .small
+                            opeLen += 1
+                        }
                     }) {
                         VStack {
                             Image(systemName: "arrow.down.right.and.arrow.up.left")
                                 .frame(width: 90.0, height: 70.0)
                                 .font(.system(size: 60))
                             Text("small")
+                                .font(.title2)
+                                .fontWeight(.medium)
+                                .frame(height: 20.0)
+                        }
+                    }
+                }
+                .padding(/*@START_MENU_TOKEN@*/.all, 7.0/*@END_MENU_TOKEN@*/)
+                .frame(width: /*@START_MENU_TOKEN@*/90.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/110.0/*@END_MENU_TOKEN@*/)
+                .foregroundColor(.brown)
+                Group {
+                    Button(action: {
+                        if opeLen != 0 {
+                            opeLen -= 1
+                            opeList[opeLen] = .plus
+                        }
+                    }) {
+                        VStack {
+                            Image(systemName: "minus")
+                                .frame(width: 90.0, height: 70.0)
+                                .font(.system(size: 60))
+                            Text("delete")
+                                .font(.title2)
+                                .fontWeight(.medium)
+                                .frame(height: 20.0)
+                        }
+                    }
+                    Button(action: {
+                        opeList = [OpeImageValue](repeating: .plus, count: 24)
+                        opeLen = 0
+                    }) {
+                        VStack {
+                            Image(systemName: "rays")
+                                .frame(width: 90.0, height: 70.0)
+                                .font(.system(size: 60))
+                            Text("all.del")
                                 .font(.title2)
                                 .fontWeight(.medium)
                                 .frame(height: 20.0)
