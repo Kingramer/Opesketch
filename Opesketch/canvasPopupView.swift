@@ -57,6 +57,26 @@ struct canvasPopupView: View {
                 }
                 .padding(/*@START_MENU_TOKEN@*/.all, 10.0/*@END_MENU_TOKEN@*/)
                 .frame(width: /*@START_MENU_TOKEN@*/90.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/90.0/*@END_MENU_TOKEN@*/)
+                Group {
+                    Button(action: {canvasColor = Color.pink}) {
+                        RoundedRectangle(cornerRadius: 10)
+                    }
+                    .foregroundColor(Color.pink)
+                    Button(action: {canvasColor = Color.indigo}) {
+                        RoundedRectangle(cornerRadius: 10)
+                    }
+                    .foregroundColor(Color.indigo)
+                    Button(action: {canvasColor = Color.teal}) {
+                        RoundedRectangle(cornerRadius: 10)
+                    }
+                    .foregroundColor(Color.teal)
+                    Button(action: {canvasColor = Color(red: 0.96875, green: 0.953125, blue: 0.8984375)}) {
+                        RoundedRectangle(cornerRadius: 10)
+                    }
+                    .foregroundColor(Color(red: 0.96875, green: 0.953125, blue: 0.8984375))
+                }
+                .padding(/*@START_MENU_TOKEN@*/.all, 10.0/*@END_MENU_TOKEN@*/)
+                .frame(width: /*@START_MENU_TOKEN@*/90.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/90.0/*@END_MENU_TOKEN@*/)
             }
         }
     }
