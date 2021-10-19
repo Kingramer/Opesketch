@@ -9,11 +9,16 @@ import SwiftUI
 
 struct operationPopupView: View {
     @Binding var isPresent: Bool
+    @Binding var opeList: [OpeImageValue]
+    @Binding var opeLen: Int
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 Group {
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    Button(action: {
+                        opeList[opeLen] = .right
+                        opeLen += 1
+                    }) {
                         VStack {
                             Image(systemName: "arrow.right")
                                 .frame(width: 90.0, height: 70.0)
@@ -24,7 +29,10 @@ struct operationPopupView: View {
                                 .frame(height: 20.0)
                         }
                     }
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    Button(action: {
+                        opeList[opeLen] = .left
+                        opeLen += 1
+                    }) {
                         VStack {
                             Image(systemName: "arrow.left")
                                 .frame(width: 90.0, height: 70.0)
@@ -35,7 +43,10 @@ struct operationPopupView: View {
                                 .frame(height: 20.0)
                         }
                     }
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    Button(action: {
+                        opeList[opeLen] = .up
+                        opeLen += 1
+                    }) {
                         VStack {
                             Image(systemName: "arrow.up")
                                 .frame(width: 90.0, height: 70.0)
@@ -46,7 +57,10 @@ struct operationPopupView: View {
                                 .frame(height: 20.0)
                         }
                     }
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    Button(action: {
+                        opeList[opeLen] = .down
+                        opeLen += 1
+                    }) {
                         VStack {
                             Image(systemName: "arrow.down")
                                 .frame(width: 90.0, height: 70.0)
@@ -57,7 +71,10 @@ struct operationPopupView: View {
                                 .frame(height: 20.0)
                         }
                     }
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    Button(action: {
+                        opeList[opeLen] = .turnr
+                        opeLen += 1
+                    }) {
                         VStack {
                             Image(systemName: "arrow.turn.up.right")
                                 .frame(width: 90.0, height: 70.0)
@@ -68,7 +85,10 @@ struct operationPopupView: View {
                                 .frame(height: 20.0)
                         }
                     }
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    Button(action: {
+                        opeList[opeLen] = .turnl
+                        opeLen += 1
+                    }) {
                         VStack {
                             Image(systemName: "arrow.turn.up.left")
                                 .frame(width: 90.0, height: 70.0)
@@ -79,7 +99,10 @@ struct operationPopupView: View {
                                 .frame(height: 20.0)
                         }
                     }
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    Button(action: {
+                        opeList[opeLen] = .rotater
+                        opeLen += 1
+                    }) {
                         VStack {
                             Image(systemName: "arrow.clockwise")
                                 .frame(width: 90.0, height: 70.0)
@@ -90,7 +113,10 @@ struct operationPopupView: View {
                                 .frame(height: 20.0)
                         }
                     }
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    Button(action: {
+                        opeList[opeLen] = .rotatel
+                        opeLen += 1
+                    }) {
                         VStack {
                             Image(systemName: "arrow.counterclockwise")
                                 .frame(width: 90.0, height: 70.0)
@@ -101,7 +127,10 @@ struct operationPopupView: View {
                                 .frame(height: 20.0)
                         }
                     }
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    Button(action: {
+                        opeList[opeLen] = .big
+                        opeLen += 1
+                    }) {
                         VStack {
                             Image(systemName: "arrow.up.left.and.arrow.down.right")
                                 .frame(width: 90.0, height: 70.0)
@@ -112,7 +141,10 @@ struct operationPopupView: View {
                                 .frame(height: 20.0)
                         }
                     }
-                    Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
+                    Button(action: {
+                        opeList[opeLen] = .small
+                        opeLen += 1
+                    }) {
                         VStack {
                             Image(systemName: "arrow.down.right.and.arrow.up.left")
                                 .frame(width: 90.0, height: 70.0)
@@ -134,6 +166,6 @@ struct operationPopupView: View {
 
 struct operationPopupView_Previews: PreviewProvider {
     static var previews: some View {
-        operationPopupView(isPresent: .constant(false))
+        operationPopupView(isPresent: .constant(false), opeList: .constant([OpeImageValue](repeating: .plus, count: 24)), opeLen: .constant(0))
     }
 }

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct operationList: View {
+    @Binding var opeList: [OpeImageValue]
+    @Binding var opeLen: Int
     var body: some View {
         /*let rows: [GridItem] =
                 Array(repeating: .init(.fixed(20)), count: 2)*/
@@ -15,13 +17,23 @@ struct operationList: View {
             LazyVGrid(columns: Array(repeating: GridItem(), count: 4)) { // カラム数の指定
                 ForEach((1...24), id: \.self) { index in
                     Button(action: {}) {
-                        ZStack(alignment: .center) {
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(.brown, style: StrokeStyle(lineWidth: 3, dash: [8]))
-                            Text("\(index)")
+                        if index <= opeLen {
+                            ZStack(alignment: .center) {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.brown, lineWidth: 3)
+                                opeList[index].image()
+                            }
+                            .frame(width: 65, height: 65)
+                            .padding(/*@START_MENU_TOKEN@*/.all, 15.0/*@END_MENU_TOKEN@*/)
+                        } else {
+                            ZStack(alignment: .center) {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.brown, style: StrokeStyle(lineWidth: 3, dash: [8]))
+                                opeList[index].image()
+                            }
+                            .frame(width: 65, height: 65)
+                            .padding(/*@START_MENU_TOKEN@*/.all, 15.0/*@END_MENU_TOKEN@*/)
                         }
-                        .frame(width: 65, height: 65)
-                        .padding(/*@START_MENU_TOKEN@*/.all, 15.0/*@END_MENU_TOKEN@*/)
                     }
                 }
             }.padding()
@@ -29,55 +41,82 @@ struct operationList: View {
     }
 }
 
-struct operationList_Previews: PreviewProvider {
-    static var previews: some View {
-        operationList()
+enum OpeImageValue {
+    case plus
+    case right
+    case left
+    case up
+    case down
+    case turnr
+    case turnl
+    case rotater
+    case rotatel
+    case big
+    case small
+    func image() -> Image {
+        switch( self ){
+            case .plus:
+                return Image(systemName: "plus")
+                .frame(width: 60.0, height: 60.0)
+                .foregroundColor(.brown)
+                .font(.system(size: 50)) as! Image
+            case .right:
+                return Image(systemName: "arrow.right")
+                .frame(width: 60.0, height: 60.0)
+                .foregroundColor(.brown)
+                .font(.system(size: 50)) as! Image
+            case .left:
+                return Image(systemName: "arrow.left")
+                .frame(width: 60.0, height: 60.0)
+                .foregroundColor(.brown)
+                .font(.system(size: 50)) as! Image
+            case .up:
+                return Image(systemName: "arrow.up")
+                .frame(width: 60.0, height: 60.0)
+                .foregroundColor(.brown)
+                .font(.system(size: 50)) as! Image
+            case .down:
+                return Image(systemName: "arrow.down")
+                .frame(width: 60.0, height: 60.0)
+                .foregroundColor(.brown)
+                .font(.system(size: 50)) as! Image
+            case .turnr:
+                return Image(systemName: "arrow.turn.up.right")
+                .frame(width: 60.0, height: 60.0)
+                .foregroundColor(.brown)
+                .font(.system(size: 50)) as! Image
+            case .turnl:
+                return Image(systemName: "arrow.turn.up.left")
+                .frame(width: 60.0, height: 60.0)
+                .foregroundColor(.brown)
+                .font(.system(size: 50)) as! Image
+            case .rotater:
+                return Image(systemName: "arrow.clockwise")
+                .frame(width: 60.0, height: 60.0)
+                .foregroundColor(.brown)
+                .font(.system(size: 50)) as! Image
+            case .rotatel:
+                return Image(systemName: "arrow.counterclockwise")
+                .frame(width: 60.0, height: 60.0)
+                .foregroundColor(.brown)
+                .font(.system(size: 50)) as! Image
+            case .big:
+                return Image(systemName: "arrow.up.left.and.arrow.down.right")
+                .frame(width: 60.0, height: 60.0)
+                .foregroundColor(.brown)
+                .font(.system(size: 50)) as! Image
+            case .small:
+                return Image(systemName: "arrow.down.right.and.arrow.up.left")
+                .frame(width: 60.0, height: 60.0)
+                .foregroundColor(.brown)
+                .font(.system(size: 50)) as! Image
+        }
     }
 }
 
-/*
-Group {
-    Button(action: {}) {
-        RoundedRectangle(cornerRadius: 10)
+struct operationList_Previews: PreviewProvider {
+    static var previews: some View {
+        operationList(opeList: .constant([OpeImageValue](repeating: .plus, count: 24)), opeLen: .constant(0))
     }
-    .foregroundColor(.black)
-    Button(action: {}) {
-        RoundedRectangle(cornerRadius: 10)
-    }
-    .foregroundColor(.white)
-    Button(action: {}) {
-        RoundedRectangle(cornerRadius: 10)
-    }
-    .foregroundColor(.red)
-    Button(action: {}) {
-        RoundedRectangle(cornerRadius: 10)
-    }
-    .foregroundColor(.blue)
-    Button(action: {}) {
-        RoundedRectangle(cornerRadius: 10)
-    }
-    .foregroundColor(.yellow)
-    Button(action: {}) {
-        RoundedRectangle(cornerRadius: 10)
-    }
-    .foregroundColor(.green)
-    Button(action: {}) {
-        RoundedRectangle(cornerRadius: 10)
-    }
-    .foregroundColor(.orange)
-    Button(action: {}) {
-        RoundedRectangle(cornerRadius: 10)
-    }
-    .foregroundColor(.gray)
-    Button(action: {}) {
-        RoundedRectangle(cornerRadius: 10)
-    }
-    .foregroundColor(.cyan)
-    Button(action: {}) {
-        RoundedRectangle(cornerRadius: 10)
-    }
-    .foregroundColor(.purple)
 }
-.padding(/*@START_MENU_TOKEN@*/.all, 10.0/*@END_MENU_TOKEN@*/)
-.frame(width: /*@START_MENU_TOKEN@*/90.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/90.0/*@END_MENU_TOKEN@*/)
-*/
+

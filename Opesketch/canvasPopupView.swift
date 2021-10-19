@@ -81,15 +81,6 @@ enum ColorValue {
     }
 }
 
-
-// struct colorButton: Button<<#Label: View#>> {
-//     let padding: Float
-//     let frame: Float
-//     init(padding, frame) {
-//         self.padding(.all, 10.0)
-//     }
-// }
-
 struct canvasPopupView_Previews: PreviewProvider {
     static var previews: some View {
         canvasPopupView(isPresent: .constant(false), canvasColor: .constant(.white))

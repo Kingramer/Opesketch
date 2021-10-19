@@ -12,6 +12,8 @@ struct ContentView: View {
     @State var operationPopup = false
     @State var canvasPopup = false
     @State var canvasColor:Color
+    @State var opeList = [OpeImageValue](repeating: .plus, count: 24)
+    @State var opeLen = 0
     var body: some View {
         let bounds = UIScreen.main.bounds
         let deviceWidth = Float(bounds.width)
@@ -68,7 +70,7 @@ struct ContentView: View {
                         ZStack {
                             Rectangle()
                                 .foregroundColor(Color(red: 0.96875, green: 0.953125, blue: 0.8984375))
-                            operationList()
+                            operationList(opeList: $opeList, opeLen: $opeLen)
                         }
                         .frame(height: CGFloat(deviceHeight - 180))
                         VStack {
@@ -112,7 +114,7 @@ struct ContentView: View {
                                 editPopupView(isPresent: $editPopup)
                             }
                             if operationPopup {
-                                operationPopupView(isPresent: $operationPopup)
+                                operationPopupView(isPresent: $operationPopup, opeList: $opeList, opeLen: $opeLen)
                             }
                             if canvasPopup {
                                 canvasPopupView(isPresent: $canvasPopup, canvasColor: $canvasColor)
