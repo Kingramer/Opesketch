@@ -11,7 +11,7 @@ import SwiftUI
 struct OpesketchApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(canvasColor: .white, animImage: Image(systemName: "pawprint.fill").font(.system(size: 60)).foregroundColor(.black) as! Image)
+            ContentView(canvasColor: .white, symbolName: "pawprint.fill", symbolColor: .black)
         }
     }
 }

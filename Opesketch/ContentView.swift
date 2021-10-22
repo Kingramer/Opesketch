@@ -14,8 +14,10 @@ struct ContentView: View {
     @State var canvasColor:Color
     @State var opeList = [OpeImageValue](repeating: .plus, count: 24)
     @State var opeLen = 0
-    @State var animImage: Image
-    @State var currentPos: CGPoint = CGPoint(x: 200, y: 200)
+    @State var symbolName: String = "pawprint.fill"
+    @State var symbolColor:Color
+    @State var imageBool: Bool = false
+    @State var currentPos: CGPoint = CGPoint(x: 270, y: 320)
     var body: some View {
         let bounds = UIScreen.main.bounds
         let deviceWidth = Float(bounds.width)
@@ -35,10 +37,14 @@ struct ContentView: View {
                         RoundedRectangle(cornerRadius: 20)
                             .foregroundColor(canvasColor)
                             .padding()
-                        animImage
-                            .position(x: self.currentPos.x, y: self.currentPos.y)
-                            .gesture(DragGesture()
-                                        .onChanged { value in self.currentPos = value.location})
+                        if imageBool {
+                            Image(systemName: self.symbolName)
+                                .foregroundColor(symbolColor)
+                                .font(.system(size: 60))
+                                .position(x: self.currentPos.x, y: self.currentPos.y)
+                                .gesture(DragGesture()
+                                            .onChanged { value in self.currentPos = value.location})
+                        }
                     }
                     Divider()
                     HStack(alignment: .center) {
@@ -116,7 +122,7 @@ struct ContentView: View {
                         Divider()
                         VStack {
                             if editPopup {
-                                editPopupView(isPresent: $editPopup, animImage: $animImage)
+                                editPopupView(isPresent: $editPopup, imageBool: $imageBool, symbolName: $symbolName, symbolColor: $symbolColor)
                             }
                             if operationPopup {
                                 operationPopupView(isPresent: $operationPopup, opeList: $opeList, opeLen: $opeLen)
@@ -137,6 +143,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(canvasColor: .white, animImage: Image(systemName: "pawprint.fill").font(.system(size: 60)).foregroundColor(.black) as! Image)
+        ContentView(canvasColor: .white, symbolName: "pawprint.fill", symbolColor: .black)
     }
 }

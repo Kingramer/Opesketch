@@ -9,15 +9,17 @@ import SwiftUI
 
 struct editPopupView: View {
     @Binding var isPresent: Bool
-    @Binding var animImage: Image
+    @Binding var imageBool: Bool
+    @Binding var symbolName: String
+    @Binding var symbolColor: Color
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 Group {
                     Button(action: {
-                        animImage = Image(systemName: "pawprint.fill")
-                            .font(.system(size: 60))
-                            .foregroundColor(.black) as! Image
+                        imageBool = true
+                        symbolName = "pawprint.fill"
+                        symbolColor = Color(.black)
                     }) {
                         Image(systemName: "pawprint.fill")
                             .frame(width: 80.0, height: 80.0)
@@ -25,9 +27,9 @@ struct editPopupView: View {
                             .foregroundColor(.black)
                     }
                     Button(action: {
-                        animImage = Image(systemName: "hare")
-                            .font(.system(size: 60))
-                            .foregroundColor(.pink) as! Image
+                        imageBool = true
+                        symbolName = "hare"
+                        symbolColor = (Color.pink)
                     }) {
                         Image(systemName: "hare")
                             .frame(width: 80.0, height: 80.0)
@@ -35,9 +37,9 @@ struct editPopupView: View {
                             .foregroundColor(.pink)
                     }
                     Button(action: {
-                        animImage = Image(systemName: "leaf.fill")
-                            .font(.system(size: 60))
-                            .foregroundColor(.green) as! Image
+                        imageBool = true
+                        symbolName = "leaf.fill"
+                        symbolColor = Color(.green)
                     }) {
                         Image(systemName: "leaf.fill")
                             .frame(width: 80.0, height: 80.0)
@@ -45,9 +47,9 @@ struct editPopupView: View {
                             .foregroundColor(.green)
                     }
                     Button(action: {
-                        animImage = Image(systemName: "face.smiling")
-                            .font(.system(size: 60))
-                            .foregroundColor(.orange) as! Image
+                        imageBool = true
+                        symbolName = "face.smiling"
+                        symbolColor = Color(.orange)
                     }) {
                         Image(systemName: "face.smiling")
                             .frame(width: 80.0, height: 80.0)
@@ -55,9 +57,9 @@ struct editPopupView: View {
                             .foregroundColor(.orange)
                     }
                     Button(action: {
-                        animImage = Image(systemName: "cloud.heavyrain.fill")
-                            .font(.system(size: 60))
-                            .foregroundColor(.blue) as! Image
+                        imageBool = true
+                        symbolName = "cloud.heavyrain.fill"
+                        symbolColor = Color(.blue)
                     }) {
                         Image(systemName: "cloud.heavyrain.fill")
                             .frame(width: 80.0, height: 80.0)
@@ -65,9 +67,9 @@ struct editPopupView: View {
                             .foregroundColor(.blue)
                     }
                     Button(action: {
-                        animImage = Image(systemName: "ferry")
-                            .font(.system(size: 60))
-                            .foregroundColor(.gray) as! Image
+                        imageBool = true
+                        symbolName = "ferry"
+                        symbolColor = Color(.gray)
                     }) {
                         Image(systemName: "ferry")
                             .frame(width: 80.0, height: 80.0)
@@ -75,9 +77,9 @@ struct editPopupView: View {
                             .foregroundColor(.gray)
                     }
                     Button(action: {
-                        animImage = Image(systemName: "play.rectangle.fill")
-                            .font(.system(size: 60))
-                            .foregroundColor(.red) as! Image
+                        imageBool = true
+                        symbolName = "play.rectangle.fill"
+                        symbolColor = Color(.red)
                     }) {
                         Image(systemName: "play.rectangle.fill")
                             .frame(width: 80.0, height: 80.0)
@@ -85,9 +87,9 @@ struct editPopupView: View {
                             .foregroundColor(.red)
                     }
                     Button(action: {
-                        animImage = Image(systemName: "ear")
-                            .font(.system(size: 60))
-                            .foregroundColor(.brown) as! Image
+                        imageBool = true
+                        symbolName = "ear"
+                        symbolColor = Color(.brown)
                     }) {
                         Image(systemName: "ear")
                             .frame(width: 80.0, height: 80.0)
@@ -104,6 +106,6 @@ struct editPopupView: View {
 
 struct editPopupView_Previews: PreviewProvider {
     static var previews: some View {
-        editPopupView(isPresent: .constant(false), animImage: .constant(Image(systemName: "pawprint.fill").font(.system(size: 60)).foregroundColor(.black) as! Image))
+        editPopupView(isPresent: .constant(false), imageBool: .constant(false), symbolName: .constant("pawprint.fill"), symbolColor: .constant(Color(.black)))
     }
 }
