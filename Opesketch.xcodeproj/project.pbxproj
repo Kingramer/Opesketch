@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA779F8027225E650047CFD3 /* operationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA779F7F27225E630047CFD3 /* operationModifier.swift */; };
+		AA8C6ED12723D0080069E94D /* operationExecution.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8C6ED02723D0080069E94D /* operationExecution.swift */; };
 		AA9C080127141F6000F2C4B0 /* OpesketchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C080027141F6000F2C4B0 /* OpesketchApp.swift */; };
 		AA9C080327141F6000F2C4B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C080227141F6000F2C4B0 /* ContentView.swift */; };
 		AA9C080527141F6400F2C4B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9C080427141F6400F2C4B0 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		AA779F7F27225E630047CFD3 /* operationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = operationModifier.swift; sourceTree = "<group>"; };
+		AA8C6ED02723D0080069E94D /* operationExecution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = operationExecution.swift; sourceTree = "<group>"; };
 		AA9C07FD27141F6000F2C4B0 /* Opesketch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Opesketch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9C080027141F6000F2C4B0 /* OpesketchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpesketchApp.swift; sourceTree = "<group>"; };
 		AA9C080227141F6000F2C4B0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			children = (
 				AA9C080027141F6000F2C4B0 /* OpesketchApp.swift */,
 				AA9C080227141F6000F2C4B0 /* ContentView.swift */,
+				AA8C6ED02723D0080069E94D /* operationExecution.swift */,
 				AA779F7F27225E630047CFD3 /* operationModifier.swift */,
 				AAB81939271CF65C0042BC91 /* operationList.swift */,
 				AA9C080E2715D44900F2C4B0 /* editPopupView.swift */,
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA8C6ED12723D0080069E94D /* operationExecution.swift in Sources */,
 				AA9C080327141F6000F2C4B0 /* ContentView.swift in Sources */,
 				AAB8193A271CF65C0042BC91 /* operationList.swift in Sources */,
 				AA9C080127141F6000F2C4B0 /* OpesketchApp.swift in Sources */,

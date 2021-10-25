@@ -10,6 +10,7 @@ import SwiftUI
 struct operationPopupView: View {
     @Binding var isPresent: Bool
     @Binding var opeList: [OpeImageValue]
+    @Binding var opeExeList: [OpeExecuteValue]
     @Binding var opeLen: Int
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -18,6 +19,7 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .right
+                            opeExeList[opeLen] = .opeRight
                             opeLen += 1
                         }
                     }) {
@@ -34,6 +36,7 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .left
+                            opeExeList[opeLen] = .opeLeft
                             opeLen += 1
                         }
                     }) {
@@ -50,6 +53,7 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .up
+                            opeExeList[opeLen] = .opeUp
                             opeLen += 1
                         }
                     }) {
@@ -66,6 +70,7 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .down
+                            opeExeList[opeLen] = .opeDown
                             opeLen += 1
                         }
                     }) {
@@ -82,6 +87,7 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .turnr
+                            opeExeList[opeLen] = .opeTurnr
                             opeLen += 1
                         }
                     }) {
@@ -98,6 +104,7 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .turnl
+                            opeExeList[opeLen] = .opeTurnl
                             opeLen += 1
                         }
                     }) {
@@ -114,6 +121,7 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .rotater
+                            opeExeList[opeLen] = .opeRotater
                             opeLen += 1
                         }
                     }) {
@@ -130,6 +138,7 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .rotatel
+                            opeExeList[opeLen] = .opeRotatel
                             opeLen += 1
                         }
                     }) {
@@ -146,6 +155,7 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .big
+                            opeExeList[opeLen] = .opeBig
                             opeLen += 1
                         }
                     }) {
@@ -162,6 +172,7 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .small
+                            opeExeList[opeLen] = .opeSmall
                             opeLen += 1
                         }
                     }) {
@@ -184,6 +195,7 @@ struct operationPopupView: View {
                         if opeLen != 0 {
                             opeLen -= 1
                             opeList[opeLen] = .plus
+                            opeExeList[opeLen] = .opeNothing
                         }
                     }) {
                         VStack {
@@ -198,6 +210,7 @@ struct operationPopupView: View {
                     }
                     Button(action: {
                         opeList = [OpeImageValue](repeating: .plus, count: 24)
+                        opeExeList = [OpeExecuteValue](repeating: .opeNothing, count: 24)
                         opeLen = 0
                     }) {
                         VStack {
@@ -221,6 +234,6 @@ struct operationPopupView: View {
 
 struct operationPopupView_Previews: PreviewProvider {
     static var previews: some View {
-        operationPopupView(isPresent: .constant(false), opeList: .constant([OpeImageValue](repeating: .plus, count: 24)), opeLen: .constant(0))
+        operationPopupView(isPresent: .constant(false), opeList: .constant([OpeImageValue](repeating: .plus, count: 24)), opeExeList: .constant([OpeExecuteValue](repeating: .opeNothing, count: 24)), opeLen: .constant(0))
     }
 }

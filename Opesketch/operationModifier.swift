@@ -13,6 +13,31 @@ struct operationModifier: View {
     }
 }
 
+/*
+struct operationRight {
+    @Binding var currentPos:CGPoint
+    @Binding var rotatePos:CGPoint
+    @Binding var moveRange:CGFloat
+    func body(content: Content) -> {
+        
+    }
+}
+*/
+
+/*
+func opeRight() {
+    
+    @Binding var currentPos:CGPoint
+    @Binding var rotatePos:CGPoint
+    @Binding var moveRange:CGFloat
+    
+    withAnimation {
+        currentPos.x += moveRange
+        rotatePos.x += 1
+    }
+}
+*/
+
 struct operationModifier_Previews: PreviewProvider {
     static var previews: some View {
         operationModifier()

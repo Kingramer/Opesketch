@@ -8,16 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var canvasColor:Color
+    @State var symbolName:String = "pawprint.fill"
+    @State var symbolColor:Color
+    @State var imageBool:Bool = false
+    @State var currentPos:CGPoint = CGPoint(x: 0, y: 0)
+    @State var rotatePos:CGPoint = CGPoint(x: 0.5, y: 0.5)
+    @State var deg:Double = 0
+    @State var imageSize:CGFloat = 60
+    @State var frameSize:CGFloat = 80
+    let moveRange:CGFloat = 80
+    let sizeRange:CGFloat = 30
+    let durationTime:Double = 1.0
+    let stepTime:Double = 1.0
+    @State var playBool:Bool = false
+    @State var playStep:Int = 0
+    
+    @State var opeExeList = [OpeExecuteValue](repeating: .opeNothing, count: 24)
+    @State var opeList = [OpeImageValue](repeating: .plus, count: 24)
+    @State var opeLen = 0
     @State var editPopup = false
     @State var operationPopup = false
     @State var canvasPopup = false
-    @State var canvasColor:Color
-    @State var opeList = [OpeImageValue](repeating: .plus, count: 24)
-    @State var opeLen = 0
-    @State var symbolName: String = "pawprint.fill"
-    @State var symbolColor:Color
-    @State var imageBool: Bool = false
-    @State var currentPos: CGPoint = CGPoint(x: 270, y: 320)
     var body: some View {
         let bounds = UIScreen.main.bounds
         let deviceWidth = Float(bounds.width)
@@ -40,14 +52,175 @@ struct ContentView: View {
                         if imageBool {
                             Image(systemName: self.symbolName)
                                 .foregroundColor(symbolColor)
-                                .font(.system(size: 60))
-                                .position(x: self.currentPos.x, y: self.currentPos.y)
-                                .gesture(DragGesture()
-                                            .onChanged { value in self.currentPos = value.location})
+                                .font(.system(size: imageSize))
+                                .frame(width: frameSize, height: frameSize)
+                                .offset(x: self.currentPos.x, y: self.currentPos.y)
+                                .rotationEffect(Angle(degrees: deg), anchor: UnitPoint(x: self.rotatePos.x, y: self.rotatePos.y))
+                                //.animation(.linear(duration: 0.5), value: true)
+                                //.gesture(DragGesture()
+                                            //.onChanged { value in self.currentPos = value.location})
                         }
                     }
                     Divider()
-                    HStack(alignment: .center) {
+                    VStack {
+                        HStack(alignment: .center) {
+                            Group {
+                                Button(action: {
+                                    playBool = true
+                                    while (playBool == true && playStep < opeLen) {
+                                        if opeExeList[playStep] == .opeRight {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
+                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                    currentPos.x += moveRange
+                                                    rotatePos.x += 1
+                                                }
+                                            }
+                                        }
+                                        if opeExeList[playStep] == .opeLeft {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
+                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                    currentPos.x -= moveRange
+                                                    rotatePos.x -= 1
+                                                }
+                                            }
+                                        }
+                                        if opeExeList[playStep] == .opeUp {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
+                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                    currentPos.y -= moveRange
+                                                    rotatePos.y -= 1
+                                                }
+                                            }
+                                        }
+                                        if opeExeList[playStep] == .opeDown {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
+                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                    currentPos.y += moveRange
+                                                    rotatePos.y += 1
+                                                }
+                                            }
+                                        }
+                                        if opeExeList[playStep] == .opeTurnr {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
+                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                    deg += 90
+                                                }
+                                            }
+                                        }
+                                        if opeExeList[playStep] == .opeTurnl {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
+                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                    deg -= 90
+                                                }
+                                            }
+                                        }
+                                        if opeExeList[playStep] == .opeRotater {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
+                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                    deg += 360
+                                                }
+                                            }
+                                        }
+                                        if opeExeList[playStep] == .opeRotatel {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
+                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                    deg -= 360
+                                                }
+                                            }
+                                        }
+                                        if opeExeList[playStep] == .opeBig {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
+                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                    imageSize += sizeRange
+                                                }
+                                            }
+                                        }
+                                        if opeExeList[playStep] == .opeSmall {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
+                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                    imageSize -= sizeRange
+                                                }
+                                            }
+                                        }
+                                        
+                                        playStep += 1
+                                    }
+                                    if playStep == opeLen {
+                                        playStep = 0
+                                        playBool = false
+                                        currentPos = CGPoint(x: 0, y: 0)
+                                        rotatePos = CGPoint(x: 0.5, y: 0.5)
+                                        deg = 0
+                                        imageSize = 60
+                                    }
+                                }) {
+                                    Image(systemName: "play.circle")
+                                        .font(.system(size: 30))
+                                    Text("play")
+                                }
+                                .padding()
+                                .foregroundColor(.black)
+                                Button(action: {
+                                    playBool = false
+                                }) {
+                                    Image(systemName: "pause.circle")
+                                        .font(.system(size: 30))
+                                    Text("pause")
+                                }
+                                .padding()
+                                .foregroundColor(.black)
+                                Button(action: {
+                                    playStep = 0
+                                    playBool = false
+                                    currentPos = CGPoint(x: 0, y: 0)
+                                    rotatePos = CGPoint(x: 0.5, y: 0.5)
+                                    deg = 0
+                                    imageSize = 60
+                                }) {
+                                    Image(systemName: "stop.circle")
+                                        .font(.system(size: 30))
+                                    Text("stop")
+                                }
+                                .padding()
+                                .foregroundColor(.black)
+                            }
+                        }
+                        .padding(/*@START_MENU_TOKEN@*/.bottom, 10.0/*@END_MENU_TOKEN@*/)
+                        /*
+                        HStack(alignment: .center) {
+                            Group {
+                                Button(action: {
+                                    OpeExecuteValue.opeLeft.process()
+                                }) {
+                                    Image(systemName: "play.circle")
+                                        .font(.system(size: 30))
+                                    Text("play")
+                                }
+                                .padding()
+                                .foregroundColor(.black)
+                                Button(action: {
+                                    OpeExecuteValue.opeDown.process()
+                                }) {
+                                    Image(systemName: "pause.circle")
+                                        .font(.system(size: 30))
+                                    Text("pause")
+                                }
+                                .padding()
+                                .foregroundColor(.black)
+                                Button(action: {
+                                    OpeExecuteValue.opeRight.process()
+                                }) {
+                                    Image(systemName: "stop.circle")
+                                        .font(.system(size: 30))
+                                    Text("stop")
+                                }
+                                .padding()
+                                .foregroundColor(.black)
+                            }
+                        }
+                        .padding(/*@START_MENU_TOKEN@*/.bottom, 10.0/*@END_MENU_TOKEN@*/)*/
+                    }
+                    /*HStack(alignment: .center) {
                         Group {
                             Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                                 Image(systemName: "play.circle")
@@ -72,7 +245,7 @@ struct ContentView: View {
                             .foregroundColor(.black)
                         }
                     }
-                    .padding(/*@START_MENU_TOKEN@*/.bottom, 10.0/*@END_MENU_TOKEN@*/)
+                    .padding(/*@START_MENU_TOKEN@*/.bottom, 10.0/*@END_MENU_TOKEN@*/)*/
                 }
                 .frame(width: CGFloat(deviceWidth * 0.5 - 10))
                 Divider()
@@ -125,7 +298,7 @@ struct ContentView: View {
                                 editPopupView(isPresent: $editPopup, imageBool: $imageBool, symbolName: $symbolName, symbolColor: $symbolColor)
                             }
                             if operationPopup {
-                                operationPopupView(isPresent: $operationPopup, opeList: $opeList, opeLen: $opeLen)
+                                operationPopupView(isPresent: $operationPopup, opeList: $opeList, opeExeList: $opeExeList, opeLen: $opeLen)
                             }
                             if canvasPopup {
                                 canvasPopupView(isPresent: $canvasPopup, canvasColor: $canvasColor)
