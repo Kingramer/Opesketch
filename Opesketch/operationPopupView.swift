@@ -10,7 +10,6 @@ import SwiftUI
 struct operationPopupView: View {
     @Binding var isPresent: Bool
     @Binding var opeList: [OpeImageValue]
-    @Binding var opeExeList: [OpeExecuteValue]
     @Binding var informationList: [[CGFloat]]
     
     @Binding var opeLen: Int
@@ -19,8 +18,8 @@ struct operationPopupView: View {
     @Binding var deg:Double
     @Binding var imageSize:CGFloat
     let moveRange:CGFloat = 80
-    let sizeRange:CGFloat = 1
-    let durationTime:Double = 0.7
+    let sizeRange:CGFloat = 0.0375
+    let durationTime:Double = 0.8
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
@@ -28,7 +27,6 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .right
-                            opeExeList[opeLen] = .opeRight
                             informationList.append([informationList[opeLen][0]+moveRange, informationList[opeLen][1], informationList[opeLen][2]+1, informationList[opeLen][3], informationList[opeLen][4], informationList[opeLen][5]])
                             opeLen += 1
                             withAnimation(Animation.easeInOut(duration: durationTime)) {
@@ -50,7 +48,6 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .left
-                            opeExeList[opeLen] = .opeLeft
                             informationList.append([informationList[opeLen][0]-moveRange, informationList[opeLen][1], informationList[opeLen][2]-1, informationList[opeLen][3], informationList[opeLen][4], informationList[opeLen][5]])
                             opeLen += 1
                             withAnimation(Animation.easeInOut(duration: durationTime)) {
@@ -72,7 +69,6 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .up
-                            opeExeList[opeLen] = .opeUp
                             informationList.append([informationList[opeLen][0], informationList[opeLen][1]-moveRange, informationList[opeLen][2], informationList[opeLen][3]-1, informationList[opeLen][4], informationList[opeLen][5]])
                             opeLen += 1
                             withAnimation(Animation.easeInOut(duration: durationTime)) {
@@ -94,7 +90,6 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .down
-                            opeExeList[opeLen] = .opeDown
                             informationList.append([informationList[opeLen][0], informationList[opeLen][1]+moveRange, informationList[opeLen][2], informationList[opeLen][3]+1, informationList[opeLen][4], informationList[opeLen][5]])
                             opeLen += 1
                             withAnimation(Animation.easeInOut(duration: durationTime)) {
@@ -116,7 +111,6 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .turnr
-                            opeExeList[opeLen] = .opeTurnr
                             informationList.append([informationList[opeLen][0], informationList[opeLen][1], informationList[opeLen][2], informationList[opeLen][3], informationList[opeLen][4]+90, informationList[opeLen][5]])
                             opeLen += 1
                             withAnimation(Animation.easeInOut(duration: durationTime)) {
@@ -137,7 +131,6 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .turnl
-                            opeExeList[opeLen] = .opeTurnl
                             informationList.append([informationList[opeLen][0], informationList[opeLen][1], informationList[opeLen][2], informationList[opeLen][3], informationList[opeLen][4]-90, informationList[opeLen][5]])
                             opeLen += 1
                             withAnimation(Animation.easeInOut(duration: durationTime)) {
@@ -158,7 +151,6 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .rotater
-                            opeExeList[opeLen] = .opeRotater
                             informationList.append([informationList[opeLen][0], informationList[opeLen][1], informationList[opeLen][2], informationList[opeLen][3], informationList[opeLen][4]+360, informationList[opeLen][5]])
                             opeLen += 1
                             withAnimation(Animation.easeInOut(duration: durationTime)) {
@@ -179,7 +171,6 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .rotatel
-                            opeExeList[opeLen] = .opeRotatel
                             informationList.append([informationList[opeLen][0], informationList[opeLen][1], informationList[opeLen][2], informationList[opeLen][3], informationList[opeLen][4]-360, informationList[opeLen][5]])
                             opeLen += 1
                             withAnimation(Animation.easeInOut(duration: durationTime)) {
@@ -200,7 +191,6 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .big
-                            opeExeList[opeLen] = .opeBig
                             informationList.append([informationList[opeLen][0], informationList[opeLen][1], informationList[opeLen][2], informationList[opeLen][3], informationList[opeLen][4], informationList[opeLen][5]+sizeRange])
                             opeLen += 1
                             withAnimation(Animation.easeInOut(duration: durationTime)) {
@@ -221,7 +211,6 @@ struct operationPopupView: View {
                     Button(action: {
                         if opeLen < 24 {
                             opeList[opeLen] = .small
-                            opeExeList[opeLen] = .opeSmall
                             informationList.append([informationList[opeLen][0], informationList[opeLen][1], informationList[opeLen][2], informationList[opeLen][3], informationList[opeLen][4], informationList[opeLen][5]-sizeRange])
                             opeLen += 1
                             withAnimation(Animation.easeInOut(duration: durationTime)) {
@@ -253,7 +242,6 @@ struct operationPopupView: View {
                             imageSize = informationList[opeLen][5]
                             informationList.removeLast()
                             opeList[opeLen] = .plus
-                            opeExeList[opeLen] = .opeNothing
                         }
                     }) {
                         VStack {
@@ -268,13 +256,12 @@ struct operationPopupView: View {
                     }
                     Button(action: {
                         opeList = [OpeImageValue](repeating: .plus, count: 24)
-                        opeExeList = [OpeExecuteValue](repeating: .opeNothing, count: 24)
                         opeLen = 0
                         currentPos = CGPoint(x: informationList[0][0], y: informationList[0][1])
                         rotatePos = CGPoint(x: informationList[0][2], y: informationList[0][3])
                         deg = informationList[0][4]
                         imageSize = informationList[0][5]
-                        informationList = [[0, 0, 0.5, 0.5, 0, 5]]
+                        informationList = [[0, 0, 0.5, 0.5, 0, 0.1]]
                     }) {
                         VStack {
                             Image(systemName: "rays")
@@ -297,6 +284,6 @@ struct operationPopupView: View {
 
 struct operationPopupView_Previews: PreviewProvider {
     static var previews: some View {
-        operationPopupView(isPresent: .constant(false), opeList: .constant([OpeImageValue](repeating: .plus, count: 24)), opeExeList: .constant([OpeExecuteValue](repeating: .opeNothing, count: 24)), informationList: .constant([[0, 0, 0.5, 0.5, 0, 5]]), opeLen: .constant(0), currentPos: .constant(CGPoint(x: 0, y: 0)), rotatePos: .constant(CGPoint(x: 0.5, y: 0.5)), deg: .constant(0), imageSize: .constant(5))
+        operationPopupView(isPresent: .constant(false), opeList: .constant([OpeImageValue](repeating: .plus, count: 24)), informationList: .constant([[0, 0, 0.5, 0.5, 0, 0.1]]), opeLen: .constant(0), currentPos: .constant(CGPoint(x: 0, y: 0)), rotatePos: .constant(CGPoint(x: 0.5, y: 0.5)), deg: .constant(0), imageSize: .constant(0.1))
     }
 }

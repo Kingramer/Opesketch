@@ -9,6 +9,7 @@ import SwiftUI
 
 struct operationList: View {
     @Binding var opeList: [OpeImageValue]
+    @Binding var opeProgress: [Color]
     @Binding var opeLen: Int
     var body: some View {
         /*let rows: [GridItem] =
@@ -20,15 +21,16 @@ struct operationList: View {
                         if index < opeLen {
                             ZStack(alignment: .center) {
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(.brown, lineWidth: 3)
+                                    .stroke(opeProgress[index+1], lineWidth: 3)
                                     .frame(width: 65, height: 65)
                                 Text("\(index+1)")
                                     .fontWeight(.bold)
                                     .frame(width: 65, height: 100, alignment: .top)
-                                    .foregroundColor(.brown)
+                                    .foregroundColor(opeProgress[index+1])
                                     .font(.caption)
                                 opeList[index].image()
                             }
+                            .foregroundColor(opeProgress[index+1])
                             .frame(width: 65, height: 65)
                             .padding(/*@START_MENU_TOKEN@*/.all, 15.0/*@END_MENU_TOKEN@*/)
                         } else {
@@ -139,7 +141,7 @@ enum OpeImageValue {
 
 struct operationList_Previews: PreviewProvider {
     static var previews: some View {
-        operationList(opeList: .constant([OpeImageValue](repeating: .plus, count: 24)), opeLen: .constant(0))
+        operationList(opeList: .constant([OpeImageValue](repeating: .plus, count: 24)),opeProgress: .constant([Color](repeating: .brown, count: 26)) , opeLen: .constant(0))
     }
 }
 
