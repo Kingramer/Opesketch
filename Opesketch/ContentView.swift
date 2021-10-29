@@ -68,6 +68,7 @@ struct ContentView: View {
                         HStack(alignment: .center) {
                             Group {
                                 Button(action: {
+                                    playStep = 1
                                     currentPos = CGPoint(x: 0, y: 0)
                                     rotatePos = CGPoint(x: 0.5, y: 0.5)
                                     deg = 0
@@ -75,45 +76,37 @@ struct ContentView: View {
                                     playBool = true
                                     print(informationList)
                                     while (playBool == true && playStep <= opeLen) {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep-1))) {
+                                        
+                                        withAnimation(Animation.linear(duration: durationTime).delay(durationTime * Double(playStep-1))) {
+                                            currentPos = CGPoint(x: informationList[playStep][0], y: informationList[playStep][1])
+                                            rotatePos = CGPoint(x: informationList[playStep][2], y: informationList[playStep][3])
+                                            deg = Double(informationList[playStep][4])
+                                            imageSize = informationList[playStep][5]
+                                        }
+                                        
+                                        /*DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep-1))) {
                                             withAnimation(Animation.linear(duration: durationTime)) {
                                                 currentPos = CGPoint(x: informationList[playStep][0], y: informationList[playStep][1])
                                                 rotatePos = CGPoint(x: informationList[playStep][2], y: informationList[playStep][3])
                                                 deg = Double(informationList[playStep][4])
                                                 imageSize = informationList[playStep][5]
                                             }
-                                        }
-                                        
-                                        /*
-                                        withAnimation(Animation.linear(duration: durationTime)) {
-                                             currentPos = CGPoint(x: informationList[playStep][0], y: informationList[playStep][1])
-                                             rotatePos = CGPoint(x: informationList[playStep][2], y: informationList[playStep][3])
-                                             deg = Double(informationList[playStep][4])
-                                             imageSize = informationList[playStep][5]
-                                        }
-                                         */
-                                        
+                                        }*/
                                         playStep += 1
+                                        
                                         print(currentPos)
                                         print(rotatePos)
                                         print(deg)
                                         print(imageSize)
                                     }
                                     if playStep > opeLen {
-                                        playStep = 1
                                         playBool = false
-                                        currentPos = CGPoint(x: 0, y: 0)
-                                        rotatePos = CGPoint(x: 0.5, y: 0.5)
-                                        deg = 0
-                                        imageSize = 60
                                     }
                                 }) {
                                     Image(systemName: "play.circle")
                                         .font(.system(size: 30))
                                     Text("play")
                                 }
-                                .padding()
-                                .foregroundColor(.black)
                                 Button(action: {
                                     playBool = false
                                 }) {
@@ -121,8 +114,6 @@ struct ContentView: View {
                                         .font(.system(size: 30))
                                     Text("pause")
                                 }
-                                .padding()
-                                .foregroundColor(.black)
                                 Button(action: {
                                     playStep = 0
                                     playBool = false
@@ -135,9 +126,9 @@ struct ContentView: View {
                                         .font(.system(size: 30))
                                     Text("stop")
                                 }
-                                .padding()
-                                .foregroundColor(.black)
                             }
+                            .padding()
+                            .foregroundColor(.black)
                         }
                         .padding(/*@START_MENU_TOKEN@*/.bottom, 10.0/*@END_MENU_TOKEN@*/)
                         /*
