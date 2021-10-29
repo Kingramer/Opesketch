@@ -15,10 +15,10 @@ struct ContentView: View {
     @State var currentPos:CGPoint = CGPoint(x: 0, y: 0)
     @State var rotatePos:CGPoint = CGPoint(x: 0.5, y: 0.5)
     @State var deg:Double = 0
-    @State var imageSize:CGFloat = 60
+    @State var imageSize:CGFloat = 5
     @State var frameSize:CGFloat = 80
     let moveRange:CGFloat = 80
-    let sizeRange:CGFloat = 30
+    let sizeRange:CGFloat = 1
     let durationTime:Double = 1.0
     let stepTime:Double = 1.0
     @State var playBool:Bool = false
@@ -26,7 +26,7 @@ struct ContentView: View {
     
     @State var opeExeList = [OpeExecuteValue](repeating: .opeNothing, count: 24)
     @State var opeList = [OpeImageValue](repeating: .plus, count: 24)
-    @State var informationList:[[CGFloat]] = [[0, 0, 0.5, 0.5, 0, 60]]
+    @State var informationList:[[CGFloat]] = [[0, 0, 0.5, 0.5, 0, 5]]
     @State var opeLen = 0
     @State var editPopup = false
     @State var operationPopup = false
@@ -53,11 +53,11 @@ struct ContentView: View {
                         if imageBool {
                             Image(systemName: self.symbolName)
                                 .foregroundColor(symbolColor)
-                                .font(.system(size: imageSize))
+                                //.font(.system(size: imageSize))
+                                .scaleEffect(imageSize)
                                 .frame(width: frameSize, height: frameSize)
                                 .offset(x: self.currentPos.x, y: self.currentPos.y)
                                 .rotationEffect(Angle(degrees: deg), anchor: UnitPoint(x: self.rotatePos.x, y: self.rotatePos.y))
-                                //.scaleEffect(imageSize)
                                 //.animation(.linear(duration: 0.5), value: true)
                                 //.gesture(DragGesture()
                                             //.onChanged { value in self.currentPos = value.location})
@@ -69,10 +69,10 @@ struct ContentView: View {
                             Group {
                                 Button(action: {
                                     playStep = 1
-                                    currentPos = CGPoint(x: 0, y: 0)
-                                    rotatePos = CGPoint(x: 0.5, y: 0.5)
-                                    deg = 0
-                                    imageSize = 60
+                                    currentPos = CGPoint(x: informationList[0][0], y: informationList[0][1])
+                                    rotatePos = CGPoint(x: informationList[0][2], y: informationList[0][3])
+                                    deg = informationList[0][4]
+                                    imageSize = informationList[0][5]
                                     playBool = true
                                     print(informationList)
                                     while (playBool == true && playStep <= opeLen) {
@@ -117,10 +117,10 @@ struct ContentView: View {
                                 Button(action: {
                                     playStep = 0
                                     playBool = false
-                                    currentPos = CGPoint(x: 0, y: 0)
-                                    rotatePos = CGPoint(x: 0.5, y: 0.5)
-                                    deg = 0
-                                    imageSize = 60
+                                    currentPos = CGPoint(x: informationList[0][0], y: informationList[0][1])
+                                    rotatePos = CGPoint(x: informationList[0][2], y: informationList[0][3])
+                                    deg = informationList[0][4]
+                                    imageSize = informationList[0][5]
                                 }) {
                                     Image(systemName: "stop.circle")
                                         .font(.system(size: 30))

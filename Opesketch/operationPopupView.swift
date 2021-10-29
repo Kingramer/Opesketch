@@ -19,7 +19,7 @@ struct operationPopupView: View {
     @Binding var deg:Double
     @Binding var imageSize:CGFloat
     let moveRange:CGFloat = 80
-    let sizeRange:CGFloat = 30
+    let sizeRange:CGFloat = 1
     let durationTime:Double = 0.7
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -274,7 +274,7 @@ struct operationPopupView: View {
                         rotatePos = CGPoint(x: informationList[0][2], y: informationList[0][3])
                         deg = informationList[0][4]
                         imageSize = informationList[0][5]
-                        informationList = [[0, 0, 0.5, 0.5, 0, 60]]
+                        informationList = [[0, 0, 0.5, 0.5, 0, 5]]
                     }) {
                         VStack {
                             Image(systemName: "rays")
@@ -297,6 +297,6 @@ struct operationPopupView: View {
 
 struct operationPopupView_Previews: PreviewProvider {
     static var previews: some View {
-        operationPopupView(isPresent: .constant(false), opeList: .constant([OpeImageValue](repeating: .plus, count: 24)), opeExeList: .constant([OpeExecuteValue](repeating: .opeNothing, count: 24)), informationList: .constant([[0, 0, 0.5, 0.5, 0, 60]]), opeLen: .constant(0), currentPos: .constant(CGPoint(x: 0, y: 0)), rotatePos: .constant(CGPoint(x: 0.5, y: 0.5)), deg: .constant(0), imageSize: .constant(60))
+        operationPopupView(isPresent: .constant(false), opeList: .constant([OpeImageValue](repeating: .plus, count: 24)), opeExeList: .constant([OpeExecuteValue](repeating: .opeNothing, count: 24)), informationList: .constant([[0, 0, 0.5, 0.5, 0, 5]]), opeLen: .constant(0), currentPos: .constant(CGPoint(x: 0, y: 0)), rotatePos: .constant(CGPoint(x: 0.5, y: 0.5)), deg: .constant(0), imageSize: .constant(5))
     }
 }
