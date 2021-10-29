@@ -56,6 +56,7 @@ struct ContentView: View {
                                 .frame(width: frameSize, height: frameSize)
                                 .offset(x: self.currentPos.x, y: self.currentPos.y)
                                 .rotationEffect(Angle(degrees: deg), anchor: UnitPoint(x: self.rotatePos.x, y: self.rotatePos.y))
+                                //.scaleEffect(imageSize)
                                 //.animation(.linear(duration: 0.5), value: true)
                                 //.gesture(DragGesture()
                                             //.onChanged { value in self.currentPos = value.location})
@@ -69,78 +70,113 @@ struct ContentView: View {
                                     playBool = true
                                     while (playBool == true && playStep < opeLen) {
                                         if opeExeList[playStep] == .opeRight {
+                                            //DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep)))
                                             DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                withAnimation(Animation.linear) {
                                                     currentPos.x += moveRange
                                                     rotatePos.x += 1
                                                 }
                                             }
+                                            /*withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
+                                                currentPos.x += moveRange
+                                                rotatePos.x += 1
+                                            }*/
                                         }
                                         if opeExeList[playStep] == .opeLeft {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                withAnimation(Animation.linear) {
                                                     currentPos.x -= moveRange
                                                     rotatePos.x -= 1
                                                 }
                                             }
+                                            /*withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
+                                                currentPos.x -= moveRange
+                                                rotatePos.x -= 1
+                                            }*/
                                         }
                                         if opeExeList[playStep] == .opeUp {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                withAnimation(Animation.linear) {
                                                     currentPos.y -= moveRange
                                                     rotatePos.y -= 1
                                                 }
                                             }
+                                            /*withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
+                                                currentPos.y -= moveRange
+                                                rotatePos.y -= 1
+                                            }*/
                                         }
                                         if opeExeList[playStep] == .opeDown {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                withAnimation(Animation.linear) {
                                                     currentPos.y += moveRange
                                                     rotatePos.y += 1
                                                 }
                                             }
+                                            /*withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
+                                                currentPos.y += moveRange
+                                                rotatePos.y += 1
+                                            }*/
                                         }
                                         if opeExeList[playStep] == .opeTurnr {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                withAnimation(Animation.linear) {
                                                     deg += 90
                                                 }
                                             }
+                                            /*withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
+                                                deg += 90
+                                            }*/
                                         }
                                         if opeExeList[playStep] == .opeTurnl {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                withAnimation(Animation.linear) {
                                                     deg -= 90
                                                 }
                                             }
+                                            /*withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
+                                                deg -= 90
+                                            }*/
                                         }
                                         if opeExeList[playStep] == .opeRotater {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                withAnimation(Animation.linear) {
                                                     deg += 360
                                                 }
                                             }
+                                            /*withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
+                                                deg += 360
+                                            }*/
                                         }
                                         if opeExeList[playStep] == .opeRotatel {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                withAnimation(Animation.linear) {
                                                     deg -= 360
                                                 }
                                             }
+                                            /*withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
+                                                deg -= 360
+                                            }*/
                                         }
                                         if opeExeList[playStep] == .opeBig {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                withAnimation(Animation.linear) {
                                                     imageSize += sizeRange
                                                 }
                                             }
+                                            /*withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
+                                                imageSize += sizeRange
+                                            }*/
                                         }
                                         if opeExeList[playStep] == .opeSmall {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-                                                withAnimation(Animation.linear(duration: durationTime)) {
+                                                withAnimation(Animation.linear) {
                                                     imageSize -= sizeRange
                                                 }
                                             }
+                                            /*withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
+                                                imageSize -= sizeRange
+                                            }*/
                                         }
                                         
                                         playStep += 1
@@ -304,7 +340,7 @@ struct ContentView: View {
                                 canvasPopupView(isPresent: $canvasPopup, canvasColor: $canvasColor)
                             }
                         }
-                        .frame(width: CGFloat(deviceWidth * 0.5 - 10), height: 150)
+                        .frame(width: CGFloat(deviceWidth * 0.5 - 10), height: 130)
                     }
                 }
                 .frame(width: CGFloat(deviceWidth * 0.5 - 10))
