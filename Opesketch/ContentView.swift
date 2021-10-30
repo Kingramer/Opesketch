@@ -86,17 +86,18 @@ struct ContentView: View {
                                                 deg = Double(informationList[playStep][4])
                                                 imageSize = informationList[playStep][5]
                                             }
-                                            withAnimation(Animation.linear(duration: 0.05).delay(durationTime * Double(playStep-1))) {
-                                                opeProgress[playStep] = .orange
+                                            withAnimation(Animation.linear(duration: 0.01).delay(durationTime * Double(playStep-1))) {
+                                                opeProgress[playStep] = .red
                                             }
-                                            withAnimation(Animation.linear(duration: 0.05).delay(durationTime * Double(playStep) - 0.05)) {
+                                            withAnimation(Animation.linear(duration: 0.01).delay(durationTime * Double(playStep) - 0.01)) {
                                                 opeProgress[playStep] = .brown
                                             }
+                                            /*
                                             if playStep == opeLen {
                                                 withAnimation(Animation.linear(duration: 0.01).delay(durationTime * Double(opeLen))) {
                                                     playBool = false
                                                 }
-                                            }
+                                            }*/
                                             playStep += 1
                                         }
                                     }
@@ -105,21 +106,19 @@ struct ContentView: View {
                                         .font(.system(size: 30))
                                     Text("play")
                                 }
-                                Button(action: {
+                                /*Button(action: {
                                     playBool = false
                                 }) {
                                     Image(systemName: "pause.circle")
                                         .font(.system(size: 30))
                                     Text("pause")
-                                }
+                                }*/
                                 Button(action: {
-                                    if !playBool {
-                                        currentPos = CGPoint(x: informationList[0][0], y: informationList[0][1])
-                                        rotatePos = CGPoint(x: informationList[0][2], y: informationList[0][3])
-                                        deg = informationList[0][4]
-                                        imageSize = informationList[0][5]
-                                        opeProgress[opeLen] = .brown
-                                    }
+                                    playBool = false
+                                    currentPos = CGPoint(x: informationList[0][0], y: informationList[0][1])
+                                    rotatePos = CGPoint(x: informationList[0][2], y: informationList[0][3])
+                                    deg = informationList[0][4]
+                                    imageSize = informationList[0][5]
                                 }) {
                                     Image(systemName: "stop.circle")
                                         .font(.system(size: 30))

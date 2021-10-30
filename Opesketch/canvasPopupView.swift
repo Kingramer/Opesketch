@@ -14,66 +14,124 @@ struct canvasPopupView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 Group {
-                    Button(action: {canvasColor = Color(.black)}) {
-                        RoundedRectangle(cornerRadius: 10)
+                    Group {
+                        Button(action: {canvasColor = Color.black}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.black)
+                        Button(action: {canvasColor = Color.black.opacity(0.5)}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.black.opacity(0.5))
+                        Button(action: {canvasColor = Color.white}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.white)
+                        Button(action: {canvasColor = Color.red}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.red)
+                        Button(action: {canvasColor = Color.red.opacity(0.5)}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.red.opacity(0.5))
+                        Button(action: {canvasColor = Color.blue}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.blue)
+                        Button(action: {canvasColor = Color.blue.opacity(0.5)}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.blue.opacity(0.5))
+                        Button(action: {canvasColor = Color.yellow}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.yellow)
+                        Button(action: {canvasColor = Color.yellow.opacity(0.5)}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.yellow.opacity(0.5))
                     }
-                    .foregroundColor(.black)
-                    Button(action: {canvasColor = Color(.white)}) {
-                        RoundedRectangle(cornerRadius: 10)
+                    Group {
+                        Button(action: {canvasColor = Color.green}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.green)
+                        Button(action: {canvasColor = Color.green.opacity(0.5)}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.green.opacity(0.5))
+                        Button(action: {canvasColor = Color.orange}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.orange)
+                        Button(action: {canvasColor = Color.orange.opacity(0.5)}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.orange.opacity(0.5))
+                        Button(action: {canvasColor = Color.gray}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.gray)
+                        Button(action: {canvasColor = Color.gray.opacity(0.5)}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.gray.opacity(0.5))
+                        Button(action: {canvasColor = Color.brown}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.brown)
+                        Button(action: {canvasColor = Color.brown.opacity(0.5)}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.brown.opacity(0.5))
+                        Button(action: {canvasColor = Color.cyan}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.cyan)
+                        Button(action: {canvasColor = Color.cyan.opacity(0.5)}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.cyan.opacity(0.5))
                     }
-                    .foregroundColor(.white)
-                    Button(action: {canvasColor = Color(.red)}) {
-                        RoundedRectangle(cornerRadius: 10)
+                    Group {
+                        Button(action: {canvasColor = Color.purple}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.purple)
+                        Button(action: {canvasColor = Color.purple.opacity(0.5)}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(.purple.opacity(0.5))
+                        Button(action: {canvasColor = Color.pink}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(Color.pink)
+                        Button(action: {canvasColor = Color.pink.opacity(0.5)}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(Color.pink.opacity(0.5))
+                        Button(action: {canvasColor = Color.indigo}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(Color.indigo)
+                        Button(action: {canvasColor = Color.indigo.opacity(0.5)}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(Color.indigo.opacity(0.5))
+                        Button(action: {canvasColor = Color.teal}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(Color.teal)
+                        Button(action: {canvasColor = Color.teal.opacity(0.5)}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(Color.teal.opacity(0.5))
+                        Button(action: {canvasColor = Color(red: 0.96875, green: 0.953125, blue: 0.8984375)}) {
+                            RoundedRectangle(cornerRadius: 10)
+                        }
+                        .foregroundColor(Color(red: 0.96875, green: 0.953125, blue: 0.8984375))
                     }
-                    .foregroundColor(.red)
-                    Button(action: {canvasColor = Color(.blue)}) {
-                        RoundedRectangle(cornerRadius: 10)
-                    }
-                    .foregroundColor(.blue)
-                    Button(action: {canvasColor = Color(.yellow)}) {
-                        RoundedRectangle(cornerRadius: 10)
-                    }
-                    .foregroundColor(.yellow)
-                    Button(action: {canvasColor = Color(.green)}) {
-                        RoundedRectangle(cornerRadius: 10)
-                    }
-                    .foregroundColor(.green)
-                    Button(action: {canvasColor = Color(.orange)}) {
-                        RoundedRectangle(cornerRadius: 10)
-                    }
-                    .foregroundColor(.orange)
-                    Button(action: {canvasColor = Color(.gray)}) {
-                        RoundedRectangle(cornerRadius: 10)
-                    }
-                    .foregroundColor(.gray)
-                    Button(action: {canvasColor = Color(.cyan)}) {
-                        RoundedRectangle(cornerRadius: 10)
-                    }
-                    .foregroundColor(.cyan)
-                    Button(action: {canvasColor = Color(.purple)}) {
-                        RoundedRectangle(cornerRadius: 10)
-                    }
-                    .foregroundColor(.purple)
-                }
-                .padding(/*@START_MENU_TOKEN@*/.all, 10.0/*@END_MENU_TOKEN@*/)
-                .frame(width: /*@START_MENU_TOKEN@*/90.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/90.0/*@END_MENU_TOKEN@*/)
-                Group {
-                    Button(action: {canvasColor = Color.pink}) {
-                        RoundedRectangle(cornerRadius: 10)
-                    }
-                    .foregroundColor(Color.pink)
-                    Button(action: {canvasColor = Color.indigo}) {
-                        RoundedRectangle(cornerRadius: 10)
-                    }
-                    .foregroundColor(Color.indigo)
-                    Button(action: {canvasColor = Color.teal}) {
-                        RoundedRectangle(cornerRadius: 10)
-                    }
-                    .foregroundColor(Color.teal)
-                    Button(action: {canvasColor = Color(red: 0.96875, green: 0.953125, blue: 0.8984375)}) {
-                        RoundedRectangle(cornerRadius: 10)
-                    }
-                    .foregroundColor(Color(red: 0.96875, green: 0.953125, blue: 0.8984375))
                 }
                 .padding(/*@START_MENU_TOKEN@*/.all, 10.0/*@END_MENU_TOKEN@*/)
                 .frame(width: /*@START_MENU_TOKEN@*/90.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/90.0/*@END_MENU_TOKEN@*/)

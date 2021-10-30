@@ -28,7 +28,10 @@ struct operationList: View {
                                     .frame(width: 65, height: 100, alignment: .top)
                                     .foregroundColor(opeProgress[index+1])
                                     .font(.caption)
-                                opeList[index].image()
+                                Image(systemName: opeList[index].name())
+                                    .frame(width: 60.0, height: 60.0)
+                                    .foregroundColor(opeProgress[index+1])
+                                    .font(.system(size: 40))
                             }
                             .foregroundColor(opeProgress[index+1])
                             .frame(width: 65, height: 65)
@@ -68,6 +71,36 @@ enum OpeImageValue {
     case small
     case delete
     case alldele
+    func name() -> String {
+        switch( self ){
+            case .plus:
+                return "plus"
+            case .right:
+                return "arrow.right"
+            case .left:
+                return "arrow.left"
+            case .up:
+                return "arrow.up"
+            case .down:
+                return "arrow.down"
+            case .turnr:
+                return "arrow.turn.up.right"
+            case .turnl:
+                return "arrow.turn.up.left"
+            case .rotater:
+                return "arrow.clockwise"
+            case .rotatel:
+                return "arrow.counterclockwise"
+            case .big:
+                return "arrow.up.left.and.arrow.down.right"
+            case .small:
+                return "arrow.down.right.and.arrow.up.left"
+            case .delete:
+                return "minus"
+            case .alldele:
+                return "trash"
+        }
+    }
     func image() -> some View {
         switch( self ){
             case .plus:
@@ -131,7 +164,7 @@ enum OpeImageValue {
                 .foregroundColor(.brown)
                 .font(.system(size: 50))
             case .alldele:
-                return Image(systemName: "rays")
+                return Image(systemName: "trash")
                 .frame(width: 60.0, height: 60.0)
                 .foregroundColor(.brown)
                 .font(.system(size: 50))
