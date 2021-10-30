@@ -96,6 +96,90 @@ struct editPopupView: View {
                             .font(.system(size: 60))
                             .foregroundColor(.brown)
                     }
+                    Button(action: {
+                        imageBool = true
+                        symbolName = "eyes"
+                        symbolColor = Color(.black)
+                    }) {
+                        Image(systemName: "eyes")
+                            .frame(width: 80.0, height: 80.0)
+                            .font(.system(size: 60))
+                            .foregroundColor(.black)
+                    }
+                    Button(action: {
+                        imageBool = true
+                        symbolName = "star"
+                        symbolColor = Color(.brown)
+                    }) {
+                        Image(systemName: "star")
+                            .frame(width: 80.0, height: 80.0)
+                            .font(.system(size: 60))
+                            .foregroundColor(.black)
+                    }
+                }
+                .padding()
+                .frame(width: 90.0, height: 90.0)
+                Group {
+                    Button(action: {
+                        imageBool = true
+                        symbolName = "car.fill"
+                        symbolColor = Color(.red)
+                    }) {
+                        Image(systemName: "car.fill")
+                            .frame(width: 80.0, height: 80.0)
+                            .font(.system(size: 60))
+                            .foregroundColor(.red)
+                    }
+                    Button(action: {
+                        imageBool = true
+                        symbolName = "bicycle"
+                        symbolColor = Color(.gray)
+                    }) {
+                        Image(systemName: "bicycle")
+                            .frame(width: 80.0, height: 80.0)
+                            .font(.system(size: 60))
+                            .foregroundColor(.gray)
+                    }
+                    Button(action: {
+                        imageBool = true
+                        symbolName = "ladybug"
+                        symbolColor = Color(.black)
+                    }) {
+                        Image(systemName: "ladybug")
+                            .frame(width: 80.0, height: 80.0)
+                            .font(.system(size: 60))
+                            .foregroundColor(.black)
+                    }
+                    Button(action: {
+                        imageBool = true
+                        symbolName = "tortoise"
+                        symbolColor = Color(.green)
+                    }) {
+                        Image(systemName: "tortoise")
+                            .frame(width: 80.0, height: 80.0)
+                            .font(.system(size: 60))
+                            .foregroundColor(.green)
+                    }
+                    Button(action: {
+                        imageBool = true
+                        symbolName = "figure.wave.circle"
+                        symbolColor = Color(.black)
+                    }) {
+                        Image(systemName: "figure.wave.circle")
+                            .frame(width: 80.0, height: 80.0)
+                            .font(.system(size: 60))
+                            .foregroundColor(.black)
+                    }
+                    Button(action: {
+                        imageBool = true
+                        symbolName = "airtag"
+                        symbolColor = Color(.red)
+                    }) {
+                        Image(systemName: "airtag")
+                            .frame(width: 80.0, height: 80.0)
+                            .font(.system(size: 60))
+                            .foregroundColor(.red)
+                    }
                 }
                 .padding()
                 .frame(width: 90.0, height: 90.0)

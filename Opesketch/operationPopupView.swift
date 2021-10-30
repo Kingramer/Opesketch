@@ -19,7 +19,7 @@ struct operationPopupView: View {
     @Binding var imageSize:CGFloat
     let moveRange:CGFloat = 80
     let sizeRange:CGFloat = 0.0375
-    let durationTime:Double = 0.8
+    let durationTime:Double = 1.0
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
@@ -264,7 +264,7 @@ struct operationPopupView: View {
                         informationList = [[0, 0, 0.5, 0.5, 0, 0.1]]
                     }) {
                         VStack {
-                            Image(systemName: "rays")
+                            Image(systemName: "trash")
                                 .frame(width: 90.0, height: 70.0)
                                 .font(.system(size: 60))
                             Text("all.del")

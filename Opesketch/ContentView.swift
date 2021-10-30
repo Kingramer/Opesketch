@@ -19,7 +19,7 @@ struct ContentView: View {
     @State var frameSize:CGFloat = 80
     let moveRange:CGFloat = 80
     let sizeRange:CGFloat = 0.0375
-    let durationTime:Double = 0.8
+    let durationTime:Double = 0.75
     let stepTime:Double = 1.0
     @State var playBool:Bool = false
     @State var playStep:Int = 1
@@ -70,63 +70,60 @@ struct ContentView: View {
                         HStack(alignment: .center) {
                             Group {
                                 Button(action: {
-                                    playStep = 1
-                                    currentPos = CGPoint(x: informationList[0][0], y: informationList[0][1])
-                                    rotatePos = CGPoint(x: informationList[0][2], y: informationList[0][3])
-                                    deg = informationList[0][4]
-                                    imageSize = informationList[0][5]
-                                    opeProgress[opeLen] = .brown
-                                    playBool = true
-                                    while (playBool == true && playStep <= opeLen) {
-                                        
-                                        withAnimation(Animation.linear(duration: durationTime).delay(durationTime * Double(playStep-1))) {
-                                            currentPos = CGPoint(x: informationList[playStep][0], y: informationList[playStep][1])
-                                            rotatePos = CGPoint(x: informationList[playStep][2], y: informationList[playStep][3])
-                                            deg = Double(informationList[playStep][4])
-                                            imageSize = informationList[playStep][5]
-                                        }
-                                        withAnimation(Animation.linear(duration: 0.05).delay(durationTime * Double(playStep-1))) {
-                                            opeProgress[playStep] = .orange
-                                        }
-                                        withAnimation(Animation.linear(duration: 0.05).delay(durationTime * Double(playStep) - 0.05)) {
-                                            opeProgress[playStep] = .brown
-                                        }
-                                        
-                                        /*DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep-1))) {
-                                            withAnimation(Animation.linear(duration: durationTime)) {
+                                    if !playBool {
+                                        playStep = 1
+                                        currentPos = CGPoint(x: informationList[0][0], y: informationList[0][1])
+                                        rotatePos = CGPoint(x: informationList[0][2], y: informationList[0][3])
+                                        deg = informationList[0][4]
+                                        imageSize = informationList[0][5]
+                                        opeProgress[opeLen] = .brown
+                                        playBool = true
+                                        while (playBool == true && playStep <= opeLen) {
+                                            
+                                            withAnimation(Animation.linear(duration: durationTime).delay(durationTime * Double(playStep-1))) {
                                                 currentPos = CGPoint(x: informationList[playStep][0], y: informationList[playStep][1])
                                                 rotatePos = CGPoint(x: informationList[playStep][2], y: informationList[playStep][3])
                                                 deg = Double(informationList[playStep][4])
                                                 imageSize = informationList[playStep][5]
                                             }
-                                        }*/
-                                        playStep += 1
+                                            withAnimation(Animation.linear(duration: 0.05).delay(durationTime * Double(playStep-1))) {
+                                                opeProgress[playStep] = .orange
+                                            }
+                                            withAnimation(Animation.linear(duration: 0.05).delay(durationTime * Double(playStep) - 0.05)) {
+                                                opeProgress[playStep] = .brown
+                                            }
+                                            if playStep == opeLen {
+                                                withAnimation(Animation.linear(duration: 0.01).delay(durationTime * Double(opeLen))) {
+                                                    playBool = false
+                                                }
+                                            }
+                                            playStep += 1
+                                        }
                                     }
-                                    playBool = false
                                 }) {
                                     Image(systemName: "play.circle")
                                         .font(.system(size: 30))
                                     Text("play")
                                 }
-                                /*Button(action: {
+                                Button(action: {
                                     playBool = false
                                 }) {
                                     Image(systemName: "pause.circle")
                                         .font(.system(size: 30))
                                     Text("pause")
-                                }*/
+                                }
                                 Button(action: {
-                                    playStep = 0
-                                    playBool = false
-                                    currentPos = CGPoint(x: informationList[0][0], y: informationList[0][1])
-                                    rotatePos = CGPoint(x: informationList[0][2], y: informationList[0][3])
-                                    deg = informationList[0][4]
-                                    imageSize = informationList[0][5]
-                                    opeProgress[opeLen] = .brown
+                                    if !playBool {
+                                        currentPos = CGPoint(x: informationList[0][0], y: informationList[0][1])
+                                        rotatePos = CGPoint(x: informationList[0][2], y: informationList[0][3])
+                                        deg = informationList[0][4]
+                                        imageSize = informationList[0][5]
+                                        opeProgress[opeLen] = .brown
+                                    }
                                 }) {
                                     Image(systemName: "stop.circle")
                                         .font(.system(size: 30))
-                                    Text("stop")
+                                    Text("reset")
                                 }
                             }
                             .padding()
@@ -217,114 +214,3 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-/*
-if opeExeList[playStep] == .opeRight {
-    //DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep)))
-    /*DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-        withAnimation(Animation.linear.delay (durationTime * Double(playStep))) {
-            currentPos.x += moveRange
-            rotatePos.x += 1
-        }
-    }*/
-    withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
-        currentPos.x += moveRange
-        rotatePos.x += 1
-    }
-}
-if opeExeList[playStep] == .opeLeft {
-    /*DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-        withAnimation(Animation.linear.delay (durationTime * Double(playStep))) {
-            currentPos.x -= moveRange
-            rotatePos.x -= 1
-        }
-    }*/
-    withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
-        currentPos.x -= moveRange
-        rotatePos.x -= 1
-    }
-}
-if opeExeList[playStep] == .opeUp {
-    /*DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-        withAnimation(Animation.linear.delay (durationTime * Double(playStep))) {
-            currentPos.y -= moveRange
-            rotatePos.y -= 1
-        }
-    }*/
-    withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
-        currentPos.y -= moveRange
-        rotatePos.y -= 1
-    }
-}
-if opeExeList[playStep] == .opeDown {
-    /*DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-        withAnimation(Animation.linear.delay (durationTime * Double(playStep))) {
-            currentPos.y += moveRange
-            rotatePos.y += 1
-        }
-    }*/
-    withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
-        currentPos.y += moveRange
-        rotatePos.y += 1
-    }
-}
-if opeExeList[playStep] == .opeTurnr {
-    /*DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-        withAnimation(Animation.linear.delay (durationTime * Double(playStep))) {
-            deg += 90
-        }
-    }*/
-    withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
-        deg += 90
-    }
-}
-if opeExeList[playStep] == .opeTurnl {
-    /*DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-        withAnimation(Animation.linear.delay (durationTime * Double(playStep))) {
-            deg -= 90
-        }
-    }*/
-    withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
-        deg -= 90
-    }
-}
-if opeExeList[playStep] == .opeRotater {
-    /*DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-        withAnimation(Animation.linear.delay (durationTime * Double(playStep))) {
-            deg += 360
-        }
-    }*/
-    withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
-        deg += 360
-    }
-}
-if opeExeList[playStep] == .opeRotatel {
-    /*DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-        withAnimation(Animation.linear.delay (durationTime * Double(playStep))) {
-            deg -= 360
-        }
-    }*/
-    withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
-        deg -= 360
-    }
-}
-if opeExeList[playStep] == .opeBig {
-    /*DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-        withAnimation(Animation.linear.delay (durationTime * Double(playStep))) {
-            imageSize += sizeRange
-        }
-    }*/
-    withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
-        imageSize += sizeRange
-    }
-}
-if opeExeList[playStep] == .opeSmall {
-    /*DispatchQueue.main.asyncAfter(deadline: .now() + (stepTime * Double(playStep))) {
-        withAnimation(Animation.linear.delay (durationTime * Double(playStep))) {
-            imageSize -= sizeRange
-        }
-    }*/
-    withAnimation(Animation.linear(duration: durationTime).delay (durationTime * Double(playStep))) {
-        imageSize -= sizeRange
-    }
-}
-*/
