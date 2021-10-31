@@ -11,44 +11,62 @@ struct operationList: View {
     @Binding var opeList: [OpeImageValue]
     @Binding var opeProgress: [Color]
     @Binding var opeLen: Int
+    @State var rectsize:CGFloat = 60
     var body: some View {
-        /*let rows: [GridItem] =
-                Array(repeating: .init(.fixed(20)), count: 2)*/
+        let bounds = UIScreen.main.bounds
+        let deviceWidth:CGFloat = bounds.width
+        let deviceHeight:CGFloat = bounds.height
+        let baseWidth:CGFloat = (deviceWidth/CGFloat(2) - CGFloat(10)) * CGFloat(0.85) / CGFloat(4) - CGFloat(10)
+        let baseHeight:CGFloat = (deviceHeight - CGFloat(35)) * CGFloat(0.84) / CGFloat(6)
+        let cornerSize:CGFloat = baseWidth * CGFloat(0.095)
+        let lineSize:CGFloat = baseWidth * CGFloat(0.028)
+        //let frameWidth:CGFloat = baseWidth * CGFloat(0.65)
+        let frameSize:CGFloat = baseHeight * CGFloat(0.6)
+        let textHeight:CGFloat = baseHeight * CGFloat(0.92)
+        let textSize:CGFloat = baseHeight * CGFloat(0.125)
+        let imageSize:CGFloat = baseWidth * CGFloat(0.4)
+        let paddingWidth:CGFloat = baseWidth * CGFloat(0.12)
+        let paddingHeight:CGFloat = baseHeight * CGFloat(0.137)
         ScrollView {
-            LazyVGrid(columns: Array(repeating: GridItem(), count: 4)) { // カラム数の指定
+            LazyVGrid(columns: Array(repeating: GridItem(), count: 4)) {
                 ForEach((0...23), id: \.self) { index in
                     Button(action: {}) {
                         if index < opeLen {
                             ZStack(alignment: .center) {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(opeProgress[index+1], lineWidth: 3)
-                                    .frame(width: 65, height: 65)
+                                RoundedRectangle(cornerRadius: cornerSize)
+                                    .stroke(opeProgress[index+1], lineWidth: lineSize)
+                                    .frame(width: frameSize, height: frameSize)
                                 Text("\(index+1)")
                                     .fontWeight(.bold)
-                                    .frame(width: 65, height: 100, alignment: .top)
+                                    .frame(width: frameSize, height: textHeight, alignment: .top)
                                     .foregroundColor(opeProgress[index+1])
-                                    .font(.caption)
+                                    //.font(.caption)
+                                    .font(.system(size: textSize))
                                 Image(systemName: opeList[index].name())
-                                    .frame(width: 60.0, height: 60.0)
+                                    .frame(width: frameSize, height: frameSize)
                                     .foregroundColor(opeProgress[index+1])
-                                    .font(.system(size: 40))
+                                    .font(.system(size: imageSize))
                             }
                             .foregroundColor(opeProgress[index+1])
-                            .frame(width: 65, height: 65)
-                            .padding(/*@START_MENU_TOKEN@*/.all, 15.0/*@END_MENU_TOKEN@*/)
+                            .frame(width: frameSize, height: frameSize)
+                            .padding(EdgeInsets(top: paddingHeight, leading: paddingWidth, bottom: paddingHeight, trailing: paddingWidth))
                         } else {
                             ZStack(alignment: .center) {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(.brown.opacity(0.5), style: StrokeStyle(lineWidth: 3, dash: [8]))
-                                    .frame(width: 65, height: 65)
+                                RoundedRectangle(cornerRadius: cornerSize)
+                                    .stroke(.brown.opacity(0.5), style: StrokeStyle(lineWidth: lineSize, dash: [8]))
+                                    .frame(width: frameSize, height: frameSize)
                                 Text("\(index+1)")
-                                    .frame(width: 65, height: 100, alignment: .top)
+                                    .frame(width: frameSize, height: textHeight, alignment: .top)
                                     .foregroundColor(.brown)
-                                    .font(.caption)
-                                opeList[index].image()
+                                    //.font(.caption)
+                                    .font(.system(size: textSize))
+                                Image(systemName: opeList[index].name())
+                                    .frame(width: frameSize, height: frameSize)
+                                    .foregroundColor(.brown.opacity(0.5))
+                                    .font(.system(size: imageSize))
                             }
-                            .frame(width: 65, height: 65)
-                            .padding(/*@START_MENU_TOKEN@*/.all, 15.0/*@END_MENU_TOKEN@*/)
+                            .frame(width: frameSize, height: frameSize)
+                            .padding(EdgeInsets(top: paddingHeight, leading: paddingWidth, bottom: paddingHeight, trailing: paddingWidth))
                         }
                     }
                 }
@@ -174,7 +192,7 @@ enum OpeImageValue {
 
 struct operationList_Previews: PreviewProvider {
     static var previews: some View {
-        operationList(opeList: .constant([OpeImageValue](repeating: .plus, count: 24)),opeProgress: .constant([Color](repeating: .brown, count: 26)) , opeLen: .constant(0))
+        operationList(opeList: .constant([OpeImageValue](repeating: .plus, count: 24)),opeProgress: .constant([Color](repeating: .brown, count: 25)) , opeLen: .constant(0))
     }
 }
 

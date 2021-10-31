@@ -9,15 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     @State var canvasColor:Color
-    @State var symbolName:String = "pawprint.fill"
+    @State var symbolName:String = ""
     @State var symbolColor:Color
     @State var imageBool:Bool = false
     @State var currentPos:CGPoint = CGPoint(x: 0, y: 0)
     @State var rotatePos:CGPoint = CGPoint(x: 0.5, y: 0.5)
     @State var deg:Double = 0
     @State var imageSize:CGFloat = 0.1
-    @State var frameSize:CGFloat = 80
-    let moveRange:CGFloat = 80
     let sizeRange:CGFloat = 0.0375
     let durationTime:Double = 0.75
     let stepTime:Double = 1.0
@@ -25,15 +23,26 @@ struct ContentView: View {
     @State var playStep:Int = 1
     @State var opeList = [OpeImageValue](repeating: .plus, count: 24)
     @State var informationList:[[CGFloat]] = [[0, 0, 0.5, 0.5, 0, 0.1]]
-    @State var opeProgress = [Color](repeating: .brown, count: 26)
+    @State var opeProgress = [Color](repeating: .brown, count: 25)
     @State var opeLen = 0
     @State var editPopup = false
     @State var operationPopup = false
     @State var canvasPopup = false
     var body: some View {
         let bounds = UIScreen.main.bounds
-        let deviceWidth = Float(bounds.width)
-        let deviceHeight = Float(bounds.height)
+        let deviceWidth:CGFloat = bounds.width
+        let deviceHeight:CGFloat = bounds.height
+        let canvasHeight:CGFloat = (deviceHeight - CGFloat(35)) * CGFloat(0.904)
+        let animationImageSize:CGFloat = pow((canvasHeight * deviceWidth), 0.5) * CGFloat(0.9197)
+        let frameSize:CGFloat = animationImageSize * CGFloat(0.1)
+        let playButtonHeight:CGFloat = (deviceHeight - CGFloat(35)) * CGFloat(0.096)
+        let playButtonSize:CGFloat = playButtonHeight * CGFloat(0.4)
+        let playTextSize:CGFloat = playButtonHeight * CGFloat(0.25)
+        let opelistWidth:CGFloat = (deviceWidth/CGFloat(2) - CGFloat(10)) * CGFloat(0.85)
+        let opelistHeight:CGFloat = (deviceHeight - CGFloat(35)) * CGFloat(0.84)
+        let popupWidth:CGFloat = (deviceWidth/CGFloat(2) - CGFloat(10)) * CGFloat(0.15)
+        let popupIcon:CGFloat = popupWidth * CGFloat(0.55)
+        let popupHeight:CGFloat = (deviceHeight - CGFloat(35)) * CGFloat(0.16)
         // let statusbarHeight = Float(UIApplication.shared.statusBarFrame.height)
         // let safeHeight = deviceHeight - statusbarHeight
         ZStack {
@@ -52,7 +61,7 @@ struct ContentView: View {
                         if imageBool {
                             Image(systemName: self.symbolName)
                                 .foregroundColor(symbolColor)
-                                .font(.system(size: 800))
+                                .font(.system(size: animationImageSize))
                                 .scaleEffect(imageSize)
                                 .frame(width: frameSize, height: frameSize)
                                 .offset(x: self.currentPos.x, y: self.currentPos.y)
@@ -62,7 +71,7 @@ struct ContentView: View {
                                             //.onChanged { value in self.currentPos = value.location})
                         }
                     }
-                    .frame(height: CGFloat(deviceHeight - 110))
+                    .frame(height: canvasHeight)//CGFloat(deviceHeight - 110)
                     Divider()
                     ZStack {
                         RoundedRectangle(cornerRadius: 20)
@@ -103,15 +112,17 @@ struct ContentView: View {
                                     }
                                 }) {
                                     Image(systemName: "play.circle")
-                                        .font(.system(size: 30))
+                                        .font(.system(size: playButtonSize))//30
                                     Text("play")
+                                        .font(.system(size: playTextSize))
                                 }
                                 /*Button(action: {
                                     playBool = false
                                 }) {
                                     Image(systemName: "pause.circle")
-                                        .font(.system(size: 30))
+                                        .font(.system(size: playButtonSize))//30
                                     Text("pause")
+                                        .font(.system(size: playTextSize))
                                 }*/
                                 Button(action: {
                                     playBool = false
@@ -120,16 +131,18 @@ struct ContentView: View {
                                     deg = informationList[0][4]
                                     imageSize = informationList[0][5]
                                 }) {
-                                    Image(systemName: "stop.circle")
-                                        .font(.system(size: 30))
+                                    Image(systemName: "arrow.backward.to.line.circle")//stop.circle
+                                        .font(.system(size: playButtonSize))//30
                                     Text("reset")
+                                        .font(.system(size: playTextSize))
                                 }
                             }
                             .padding()
                             .foregroundColor(.black)
                         }
-                        .padding(/*@START_MENU_TOKEN@*/.bottom, 10.0/*@END_MENU_TOKEN@*/)
+                        //.padding(/*@START_MENU_TOKEN@*/.bottom, 10.0/*@END_MENU_TOKEN@*/)
                     }
+                    .frame(height: playButtonHeight)
                 }
                 .frame(width: CGFloat(deviceWidth * 0.5 - 10))
                 Divider()
@@ -140,45 +153,47 @@ struct ContentView: View {
                                 .foregroundColor(Color(red: 0.96875, green: 0.953125, blue: 0.8984375))
                             operationList(opeList: $opeList, opeProgress: $opeProgress, opeLen: $opeLen)
                         }
-                        .frame(height: CGFloat(deviceHeight - 180))
+                        .frame(width: opelistWidth, height: CGFloat(deviceHeight - 180))
                         ZStack {
                             RoundedRectangle(cornerRadius: 20)
                                 .foregroundColor(Color(red: 0.96875, green: 0.953125, blue: 0.8984375))
                             VStack {
                                 Group {
                                     Button(action: {
+                                        self.canvasPopup.toggle()
+                                        self.editPopup = false
+                                        self.operationPopup = false
+                                    }) {
+                                        Image(systemName: "paintbrush")
+                                            .font(.system(size: popupIcon))
+                                    }
+                                    Button(action: {
                                         self.editPopup.toggle()
                                         self.operationPopup = false
                                         self.canvasPopup = false
                                     }) {
-                                        Image(systemName: "pencil")
-                                            .font(.system(size: 40))
+                                        Image(systemName: "square.and.pencil")
+                                            .font(.system(size: popupIcon))
                                     }
                                     Button(action: {
                                         self.operationPopup.toggle()
                                         self.editPopup = false
                                         self.canvasPopup = false
                                     }) {
-                                        Image(systemName: "scissors")
-                                            .font(.system(size: 40))
-                                    }
-                                    Button(action: {
-                                        self.canvasPopup.toggle()
-                                        self.editPopup = false
-                                        self.operationPopup = false
-                                    }) {
-                                        Image(systemName: "paintbrush")
-                                            .font(.system(size: 40))
+                                        Image(systemName: "arrow.up.and.down.and.arrow.left.and.right")
+                                            .font(.system(size: popupIcon))
                                     }
                                 }
                                 .padding()
-                                .frame(width: 80.0, height: 80.0)
+                                .frame(width: popupWidth, height: popupWidth)
                                 .foregroundColor(.gray)
                             }
                         }
-                        .frame(width: 80.0)
+                        .frame(width: popupWidth)
+                        .position(x: CGFloat(popupWidth * 0.25), y: CGFloat(opelistHeight * 0.5))
                     }
-                    .position(x: CGFloat(deviceWidth * 0.25), y: CGFloat(deviceHeight * 0.5 - 85))
+                    .frame(height: opelistHeight)
+                    .position(x: CGFloat(deviceWidth * 0.25), y: CGFloat((deviceHeight - 20 - popupHeight + (deviceHeight - 900) * 0.3) * 0.5))
                     //.frame(width: CGFloat(deviceWidth * 0.5 - 100))
                     if editPopup || operationPopup || canvasPopup {
                         Divider()
@@ -197,7 +212,7 @@ struct ContentView: View {
                                 }
                             }
                         }
-                        .frame(width: CGFloat(deviceWidth * 0.5 - 10), height: 130)
+                        .frame(width: CGFloat(deviceWidth * 0.5 - 10), height: popupHeight)
                     }
                 }
                 .frame(width: CGFloat(deviceWidth * 0.5 - 10))
@@ -209,7 +224,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(canvasColor: .white, symbolName: "pawprint.fill", symbolColor: .black)
+        ContentView(canvasColor: .white, symbolName: "", symbolColor: .black)
     }
 }
 

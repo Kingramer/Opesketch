@@ -11,6 +11,11 @@ struct canvasPopupView: View {
     @Binding var isPresent:Bool
     @Binding var canvasColor:Color
     var body: some View {
+        let bounds = UIScreen.main.bounds
+        let deviceHeight:CGFloat = bounds.height
+        let popupHeight:CGFloat = (deviceHeight - CGFloat(35)) * CGFloat(0.16)
+        let buttonPadding:CGFloat = popupHeight * CGFloat(0.08)
+        let buttonSize:CGFloat = popupHeight * CGFloat(0.725)
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 Group {
@@ -133,28 +138,9 @@ struct canvasPopupView: View {
                         .foregroundColor(Color(red: 0.96875, green: 0.953125, blue: 0.8984375))
                     }
                 }
-                .padding(/*@START_MENU_TOKEN@*/.all, 10.0/*@END_MENU_TOKEN@*/)
-                .frame(width: /*@START_MENU_TOKEN@*/90.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/90.0/*@END_MENU_TOKEN@*/)
+                .padding(.all, buttonPadding)
+                .frame(width: buttonSize, height: buttonSize)
             }
-        }
-    }
-}
-
-enum ColorValue {
-    case White
-    case Black
-    case Red
-    case Blue
-    func color() -> Color {
-        switch( self ){
-            case .White:
-                return Color(UIColor.white)
-            case .Black:
-                return Color(UIColor.black)
-            case .Red:
-                return Color(UIColor.red)
-            case .Blue:
-                return Color(UIColor.blue)
         }
     }
 }

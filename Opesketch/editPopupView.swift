@@ -14,6 +14,10 @@ struct editPopupView: View {
     @Binding var symbolColor: Color
     @State var colorSelect:Bool = false
     var body: some View {
+        let bounds = UIScreen.main.bounds
+        let deviceHeight:CGFloat = bounds.height
+        let popupHeight:CGFloat = (deviceHeight - CGFloat(35)) * CGFloat(0.16)
+        let buttonFrame:CGFloat = popupHeight * CGFloat(0.75)
         if colorSelect {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
@@ -23,90 +27,70 @@ struct editPopupView: View {
                                 colorSelect = false
                             }) {
                                 Image(systemName: "arrowshape.turn.up.left")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.black)
+                                    .modifier(EditImageModify(color: .black))
                             }
                             Button(action: {
                                 imageBool = true
                                 symbolColor = Color.black
                             }) {
                                 Image(systemName: symbolName)
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.black)
+                                    .modifier(EditImageModify(color: .black))
                             }
                             Button(action: {
                                 imageBool = true
                                 symbolColor = Color.white
                             }) {
                                 Image(systemName: symbolName)
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.white)
+                                    .modifier(EditImageModify(color: .white))
                             }
                             Button(action: {
                                 imageBool = true
                                 symbolColor = Color.red
                             }) {
                                 Image(systemName: symbolName)
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.red)
+                                    .modifier(EditImageModify(color: .red))
                             }
                             Button(action: {
                                 imageBool = true
                                 symbolColor = Color.blue
                             }) {
                                 Image(systemName: symbolName)
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.blue)
+                                    .modifier(EditImageModify(color: .blue))
                             }
                             Button(action: {
                                 imageBool = true
                                 symbolColor = Color.yellow
                             }) {
                                 Image(systemName: symbolName)
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.yellow)
+                                    .modifier(EditImageModify(color: .yellow))
                             }
                             Button(action: {
                                 imageBool = true
                                 symbolColor = Color.green
                             }) {
                                 Image(systemName: symbolName)
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.green)
+                                    .modifier(EditImageModify(color: .green))
                             }
                             Button(action: {
                                 imageBool = true
                                 symbolColor = Color.orange
                             }) {
                                 Image(systemName: symbolName)
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.orange)
+                                    .modifier(EditImageModify(color: .orange))
                             }
                             Button(action: {
                                 imageBool = true
                                 symbolColor = Color.gray
                             }) {
                                 Image(systemName: symbolName)
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.gray)
+                                    .modifier(EditImageModify(color: .gray))
                             }
                             Button(action: {
                                 imageBool = true
                                 symbolColor = Color.brown
                             }) {
                                 Image(systemName: symbolName)
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.brown)
+                                    .modifier(EditImageModify(color: .brown))
                             }
                         }
                         Group {
@@ -115,50 +99,40 @@ struct editPopupView: View {
                                 symbolColor = Color.cyan
                             }) {
                                 Image(systemName: symbolName)
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.cyan)
+                                    .modifier(EditImageModify(color: .cyan))
                             }
                             Button(action: {
                                 imageBool = true
                                 symbolColor = Color.purple
                             }) {
                                 Image(systemName: symbolName)
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.purple)
+                                    .modifier(EditImageModify(color: .purple))
                             }
                             Button(action: {
                                 imageBool = true
                                 symbolColor = Color.pink
                             }) {
                                 Image(systemName: symbolName)
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.pink)
+                                    .modifier(EditImageModify(color: .pink))
                             }
                             Button(action: {
                                 imageBool = true
                                 symbolColor = Color.indigo
                             }) {
                                 Image(systemName: symbolName)
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.indigo)
+                                    .modifier(EditImageModify(color: .indigo))
                             }
                             Button(action: {
                                 imageBool = true
                                 symbolColor = Color.teal
                             }) {
                                 Image(systemName: symbolName)
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.teal)
+                                    .modifier(EditImageModify(color: .teal))
                             }
                         }
                     }
                     .padding()
-                    .frame(width: 90.0, height: 90.0)
+                    .frame(width: buttonFrame, height: buttonFrame)//90.0
                 }
             }
         } else {
@@ -173,9 +147,7 @@ struct editPopupView: View {
                                 colorSelect = true
                             }) {
                                 Image(systemName: "pawprint.fill")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.black)
+                                    .modifier(EditImageModify(color: .black))
                             }
                             Button(action: {
                                 imageBool = true
@@ -184,9 +156,7 @@ struct editPopupView: View {
                                 colorSelect = true
                             }) {
                                 Image(systemName: "hare")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.pink)
+                                    .modifier(EditImageModify(color: .pink))
                             }
                             Button(action: {
                                 imageBool = true
@@ -195,9 +165,7 @@ struct editPopupView: View {
                                 colorSelect = true
                             }) {
                                 Image(systemName: "leaf.fill")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.green)
+                                    .modifier(EditImageModify(color: .green))
                             }
                             Button(action: {
                                 imageBool = true
@@ -206,9 +174,7 @@ struct editPopupView: View {
                                 colorSelect = true
                             }) {
                                 Image(systemName: "face.smiling")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.orange)
+                                    .modifier(EditImageModify(color: .orange))
                             }
                             Button(action: {
                                 imageBool = true
@@ -217,9 +183,7 @@ struct editPopupView: View {
                                 colorSelect = true
                             }) {
                                 Image(systemName: "cloud.heavyrain.fill")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.blue)
+                                    .modifier(EditImageModify(color: .blue))
                             }
                             Button(action: {
                                 imageBool = true
@@ -228,9 +192,7 @@ struct editPopupView: View {
                                 colorSelect = true
                             }) {
                                 Image(systemName: "ferry")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.gray)
+                                    .modifier(EditImageModify(color: .gray))
                             }
                             Button(action: {
                                 imageBool = true
@@ -239,9 +201,7 @@ struct editPopupView: View {
                                 colorSelect = true
                             }) {
                                 Image(systemName: "play.rectangle.fill")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.red)
+                                    .modifier(EditImageModify(color: .red))
                             }
                             Button(action: {
                                 imageBool = true
@@ -250,9 +210,7 @@ struct editPopupView: View {
                                 colorSelect = true
                             }) {
                                 Image(systemName: "ear")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.brown)
+                                    .modifier(EditImageModify(color: .brown))
                             }
                             Button(action: {
                                 imageBool = true
@@ -261,9 +219,7 @@ struct editPopupView: View {
                                 colorSelect = true
                             }) {
                                 Image(systemName: "eyes.inverse")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.black)
+                                    .modifier(EditImageModify(color: .black))
                             }
                             Button(action: {
                                 imageBool = true
@@ -272,22 +228,18 @@ struct editPopupView: View {
                                 colorSelect = true
                             }) {
                                 Image(systemName: "star")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.yellow)
+                                    .modifier(EditImageModify(color: .yellow))
                             }
                         }
                         Group {
                             Button(action: {
                                 imageBool = true
                                 symbolName = "car.fill"
-                                symbolColor = Color.red
+                                symbolColor = Color.teal
                                 colorSelect = true
                             }) {
                                 Image(systemName: "car.fill")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.red)
+                                    .modifier(EditImageModify(color: .teal))
                             }
                             Button(action: {
                                 imageBool = true
@@ -296,9 +248,7 @@ struct editPopupView: View {
                                 colorSelect = true
                             }) {
                                 Image(systemName: "bicycle")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.gray)
+                                    .modifier(EditImageModify(color: .gray))
                             }
                             Button(action: {
                                 imageBool = true
@@ -307,9 +257,7 @@ struct editPopupView: View {
                                 colorSelect = true
                             }) {
                                 Image(systemName: "ladybug")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.black)
+                                    .modifier(EditImageModify(color: .black))
                             }
                             Button(action: {
                                 imageBool = true
@@ -318,20 +266,7 @@ struct editPopupView: View {
                                 colorSelect = true
                             }) {
                                 Image(systemName: "tortoise")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.green)
-                            }
-                            Button(action: {
-                                imageBool = true
-                                symbolName = "figure.wave.circle"
-                                symbolColor = Color.black
-                                colorSelect = true
-                            }) {
-                                Image(systemName: "figure.wave.circle")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.black)
+                                    .modifier(EditImageModify(color: .green))
                             }
                             Button(action: {
                                 imageBool = true
@@ -340,17 +275,39 @@ struct editPopupView: View {
                                 colorSelect = true
                             }) {
                                 Image(systemName: "airtag")
-                                    .frame(width: 80.0, height: 80.0)
-                                    .font(.system(size: 60))
-                                    .foregroundColor(.red)
+                                    .modifier(EditImageModify(color: .red))
+                            }
+                            Button(action: {
+                                imageBool = true
+                                symbolName = "figure.wave.circle"
+                                symbolColor = Color.black
+                                colorSelect = true
+                            }) {
+                                Image(systemName: "figure.wave.circle")
+                                    .modifier(EditImageModify(color: .black))
                             }
                         }
                     }
                     .padding()
-                    .frame(width: 90.0, height: 90.0)
+                    .frame(width: buttonFrame, height: buttonFrame)//90.0
                 }
             }
         }
+    }
+}
+
+struct EditImageModify: ViewModifier {
+    let color: Color
+    func body(content: Content) -> some View {
+        let bounds = UIScreen.main.bounds
+        let deviceHeight:CGFloat = bounds.height
+        let popupHeight:CGFloat = (deviceHeight - CGFloat(35)) * CGFloat(0.16)
+        let frameSize:CGFloat = popupHeight * CGFloat(0.65)
+        let imageSize:CGFloat = popupHeight * CGFloat(0.485)
+        content
+            .frame(width: frameSize, height: frameSize)//80.0
+            .font(.system(size: imageSize))//60.0
+            .foregroundColor(color)
     }
 }
 
